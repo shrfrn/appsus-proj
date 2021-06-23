@@ -11,7 +11,7 @@ export default
                 <email-preview 
                     :email="email"
                     @delete="emitDelete($event)"
-                    @toggleRead="emitToggleRead($event)"
+                    @toggle-read="emitToggleRead($event)"
                     @reply="emitReply($event)"
                     class="email-preview" />
                 <router-link :to="'/email/' + email.id">Details</router-link>

@@ -44,6 +44,7 @@ export default {
             this.newEmail.from = 'Sharon Frenkel'
             this.$emit('email-sent', this.newEmail)
         },
+
         cancel(){
             this.$emit('email-canceled')
         }
@@ -54,12 +55,12 @@ export default {
 
     created() {
         if(this.repliedEmail){
-            console.log('replying', repliedEmail);
-            this.newMail.to = this.repliedEmail.to
-            this.newMail.cc = this.repliedEmail.cc
-            this.newMail.bcc = this.repliedEmail.bcc
-            this.newMail.body = this.repliedEmail.body
-            this.newMail.to = this.repliedEmail.from
+            console.log('this.repliedEmail ?', this.repliedEmail);
+            this.newEmail.to = this.repliedEmail.to
+            this.newEmail.cc = this.repliedEmail.cc
+            this.newEmail.bcc = this.repliedEmail.bcc
+            this.newEmail.body = this.repliedEmail.body
+            this.newEmail.to = this.repliedEmail.from
         } 
     },
 

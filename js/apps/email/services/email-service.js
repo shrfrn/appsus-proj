@@ -36,7 +36,7 @@ function getById(emailId){
   }
   
 function remove(emailId){
-    storageService.remove(APPSUS_EMAIL, emailId)
+    return storageService.remove(APPSUS_EMAIL, emailId)
 }
 
 function save(email){

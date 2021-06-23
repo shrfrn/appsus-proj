@@ -6,7 +6,7 @@ export default
     
     template: `
         <div class="email-preview">
-            <p class="email-preview-from">{{email.from}}</p>
+            <p class="email-preview-from">{{email.from}}{{email.isRead}}</p>
             <p class="email-preview-subject">{{email.subject}}
                 <span class="email-preview-body">{{email.body}}</span>
             </p>
@@ -29,7 +29,7 @@ export default
             this.$emit('delete', this.email.id)
         },
         toggleRead() {
-            this.$emit('toggle-read', this.email.id)
+            this.$emit('toggle-read', this.email)
         },
         reply() {
             this.$emit('reply', this.email.id)
