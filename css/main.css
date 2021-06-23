@@ -1,3 +1,5 @@
+@import './apps/email/cmps/email-preview.css';
+
 * {
     margin: 0;
     padding: 0;
