@@ -4,10 +4,11 @@ import noteTodo from './note-todo.js';
 import noteVideo from './note-video.js';
 
 export default {
-    props: ['notes'],
+    props: ['pinnedNotes'],
     template: `
-        <section class="note-list">
-            <component @pinNote="setPinned" @updateNote="setUpdate" @deleteNote="removeIt" :is="note.type" v-for="note in notes" :key="note.id" :info="note.info"  :id="note.id"></component> 
+    
+        <section class="pinned-list">
+            <component @pinNote="setPinned" @updateNote="setUpdate" @deleteNote="removeIt" :is="note.type" v-for="note in pinnedNotes" :key="note.id" :info="note.info" :id="note.id" />
         </section>
     `,
     components: {
@@ -16,7 +17,6 @@ export default {
         noteTodo,
         noteVideo,
     },
-
     methods: {
         removeIt(id) {
             this.$emit('deleteNoteSelect', id);

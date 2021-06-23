@@ -18,6 +18,15 @@ export default {
             <label>Add Todo seperated by commas (,)</label>
             <input type="text" v-model="note.info.todos">
 
+            <label>Choose Color</label>
+            <input type="color" v-model="note.info.backgroundColor">
+            <select v-model="note.info.backgroundColor">
+                <option value="white">white</option>
+                <option value="blue">blue</option>
+                <option value="green">green</option>
+                <option value="red">red</option>
+            </select>
+
             
             <button @click="update">Update Note</button>
             

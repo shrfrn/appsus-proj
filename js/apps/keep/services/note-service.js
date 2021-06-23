@@ -10,6 +10,7 @@ export const noteService = {
     create,
     remove,
     update,
+    setNotePinned,
 };
 
 function query() {
@@ -28,7 +29,14 @@ function remove(noteId) {
 }
 
 function update(updatedNote) {
+    if (updatedNote.type === 'noteTodo') updatedNote.info.todos = _foramtTodos(updatedNote);
     return storageService.put(NOTES_KEY, updatedNote);
+}
+
+function setNotePinned(noteId) {
+    const idx = gNotes.findIndex((note) => note.id === noteId);
+    gNotes[idx].isPinned = !gNotes[idx].isPinned;
+    return storageService.put(NOTES_KEY, gNotes[idx]);
 }
 
 function _createNotes() {
@@ -38,30 +46,39 @@ function _createNotes() {
             {
                 id: utilService.makeId(),
                 type: 'noteText',
-                isPinned: true,
+                isPinned: false,
                 info: {
                     txt: 'Fullstack Me Baby!',
+                    backgroundColor: '#ffffff',
                 },
             },
             {
                 id: utilService.makeId(),
                 type: 'noteImg',
+                isPinned: false,
                 info: {
                     url: 'https://d1aeri3ty3izns.cloudfront.net/media/63/631151/1200/preview.jpg',
                     title: 'Me playing Mi',
-                },
-                style: {
-                    backgroundColor: '#00d',
+                    backgroundColor: '#ffffff',
+                    txt: '',
                 },
             },
             {
                 id: utilService.makeId(),
                 type: 'noteTodo',
+                isPinned: false,
                 info: {
+                    backgroundColor: '#ffffff',
                     label: 'How was it:',
+                    txt: '',
                     todos: [
-                        { id: utilService.makeId(), txt: 'Do that', doneAt: null },
-                        { id: utilService.makeId(), txt: 'Do this', doneAt: 187111111 },
+                        { id: utilService.makeId(), txt: 'Do that', doneAt: null, isDone: false },
+                        {
+                            id: utilService.makeId(),
+                            txt: 'Do this',
+                            doneAt: '',
+                            isDone: false,
+                        },
                     ],
                 },
             },
@@ -72,6 +89,7 @@ function _createNotes() {
                 info: {
                     txt: 'My video!',
                     url: 'http://techslides.com/demos/sample-videos/small.mp4',
+                    backgroundColor: '#ffffff',
                 },
             },
         ];
@@ -86,6 +104,7 @@ function _foramtTodos(note) {
             id: utilService.makeId(),
             txt: todo,
             doneAt: null,
+            isDone: false,
         };
     });
 }
