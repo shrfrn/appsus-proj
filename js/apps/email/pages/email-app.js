@@ -5,12 +5,19 @@ import emailCompose from "../cmps/email-compose.js"
 export default {
     template: `
         <section v-if="emails">
+            <span>{{unReadCount}}</span>
             <button @click=compose()>Compose</button>
             <button @click=sortBySentAt()>Sort by date</button>
             <button @click=sortBySubject()>SortBySubject</button>
+            <select v-model="filter" name="" id="">
+                <option value="All">All</option>
+                <option value="Read">Read</option>
+                <option value="Unread">Unread</option>
+            </select>
+            <input v-model="searchStr" type="text" placeholder="search...">
             <email-list 
                 v-if="isEmailList" 
-                :emails="emails"
+                :emails="getEmails"
                 @delete="onEmailDeleted"
                 @toggle-read="onToggleRead"
                 @reply="onReply"/>
@@ -28,6 +35,8 @@ export default {
             pageState: 'email-list',
             sortBy: 'timestamp',
             sortDir: 1,
+            filter: 'All',
+            searchStr: '',
         }
     },
     methods: {
@@ -61,6 +70,11 @@ export default {
 
             this.emails.sort((email1, email2) => this.sortDir * (email1.subject.localeCompare(email2.subject)))        
             this.sortBy = 'subject'
+        },
+        
+        onFullExpnad(ev){
+            // expand
+            this.fullExpand = true
         },
 
         onEmailSent(newEmail){
@@ -102,6 +116,28 @@ export default {
         },
     },
     computed: {
+
+        getEmails(){
+            let filteredEmails = this.emails
+            if(this.filter !== 'All')   {
+                const showRead = (this.filter === 'Read')
+                filteredEmails = this.emails.filter(email => email.isRead === showRead)
+            }
+            if(!this.searchStr) return filteredEmails
+            let searchStr = this.searchStr.toLowerCase()
+            return filteredEmails.filter (
+                        email => email.subject.toLowerCase().includes(searchStr) || 
+                        email.body.toLowerCase().includes(searchStr) ||
+                        email.from.toLowerCase().includes(searchStr) ||
+                        email.to.toLowerCase().includes(searchStr) ||
+                        email.cc.toLowerCase().includes(searchStr) ||
+                        email.bcc.toLowerCase().includes(searchStr)
+                    )
+        },
+
+        unReadCount() {
+            return this.emails.reduce((acc, email) => acc += (email.isRead) ? 1 : 0, 0)
+        },
 
         isEmailList(){
             return (this.pageState === 'email-list') ? true: false

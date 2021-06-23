@@ -58,7 +58,7 @@ export default {
             this.newEmail.to = this.repliedEmail.from
             this.newEmail.cc = this.repliedEmail.cc
             this.newEmail.bcc = this.repliedEmail.bcc
-            this.newEmail.subject = this.repliedEmail.subject
+            this.newEmail.subject = 'Re: ' + this.repliedEmail.subject
             this.newEmail.body = this.repliedEmail.body
         } 
     },
