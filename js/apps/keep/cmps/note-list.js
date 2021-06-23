@@ -7,7 +7,7 @@ export default {
     props: ['notes'],
     template: `
         <section class="note-list">
-            <component :is="note.type" v-for="note in notes" :info="note.info"></component>
+            <component @deleteNote="removeIt":is="note.type" v-for="note in notes" :info="note.info" @updateNote="setUpdate" :id="note.id"></component> 
         </section>
     `,
     components: {
@@ -15,5 +15,14 @@ export default {
         noteImg,
         noteTodo,
         noteVideo,
+    },
+
+    methods: {
+        removeIt(id) {
+            this.$emit('deleteNoteSelect', id);
+        },
+        setUpdate(id) {
+            this.$emit('updateNoteSelect', id);
+        },
     },
 };

@@ -7,10 +7,28 @@ utilService.saveToStorage(NOTES_KEY, gNotes);
 
 export const noteService = {
     query,
+    create,
+    remove,
+    update,
 };
 
 function query() {
     return storageService.query(NOTES_KEY);
+}
+
+function create(note) {
+    note.id = utilService.makeId();
+    if (note.type === 'noteTodo') note.info.todos = _foramtTodos(note);
+
+    return storageService.post(NOTES_KEY, note);
+}
+
+function remove(noteId) {
+    return storageService.remove(NOTES_KEY, noteId);
+}
+
+function update(updatedNote) {
+    return storageService.put(NOTES_KEY, updatedNote);
 }
 
 function _createNotes() {
@@ -18,6 +36,7 @@ function _createNotes() {
     if (!notes || !notes.length) {
         notes = [
             {
+                id: utilService.makeId(),
                 type: 'noteText',
                 isPinned: true,
                 info: {
@@ -25,6 +44,7 @@ function _createNotes() {
                 },
             },
             {
+                id: utilService.makeId(),
                 type: 'noteImg',
                 info: {
                     url: 'https://d1aeri3ty3izns.cloudfront.net/media/63/631151/1200/preview.jpg',
@@ -35,6 +55,7 @@ function _createNotes() {
                 },
             },
             {
+                id: utilService.makeId(),
                 type: 'noteTodo',
                 info: {
                     label: 'How was it:',
@@ -45,6 +66,7 @@ function _createNotes() {
                 },
             },
             {
+                id: utilService.makeId(),
                 type: 'noteVideo',
                 isPinned: false,
                 info: {
@@ -56,3 +78,20 @@ function _createNotes() {
     }
     return notes;
 }
+
+function _foramtTodos(note) {
+    const todos = note.info.todos.split(',');
+    return todos.map((todo) => {
+        return {
+            id: utilService.makeId(),
+            txt: todo,
+            doneAt: null,
+        };
+    });
+}
+
+// VIDEO SAMPLE:
+// http://techslides.com/demos/sample-videos/small.mp4
+
+// IMAGE SAMPLE:
+// https://images-na.ssl-images-amazon.com/images/I/71aku52GvSL._AC_SL1500_.jpg

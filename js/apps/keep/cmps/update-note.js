@@ -1,6 +1,8 @@
 export default {
+    props: ['noteId'],
     template: `
-        <section class="add-note">
+        <section class="update-note">
+        <h1>YOU CAN UPDATE NOW</h1>
             <select v-model="note.type">
                 <option value="noteText">noteText</option>
                 <option value="noteImg">noteImg</option>
@@ -17,7 +19,7 @@ export default {
             <input type="text" v-model="note.info.todos">
 
             
-            <button @click="add">Add Note</button>
+            <button @click="update">Update Note</button>
             
         </section>
     `,
@@ -25,6 +27,7 @@ export default {
     data() {
         return {
             note: {
+                id: this.noteId,
                 type: 'noteText',
                 info: {
                     txt: '',
@@ -36,8 +39,8 @@ export default {
     },
 
     methods: {
-        add() {
-            this.$emit('addNote', this.note);
+        update() {
+            this.$emit('updateNote', this.note);
         },
     },
 };
