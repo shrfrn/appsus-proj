@@ -1,8 +1,8 @@
 export default {
     template: `
-  <header class="app-header">
+  <header class="app-header" >
     <div class="logo">
-      <p>Miss Book Shop</p>
+      <p>Appsus</p>
     </div>
 
     <div class="links">

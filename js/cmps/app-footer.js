@@ -1,7 +1,8 @@
 export default {
-  template: `
+    template: `
   <footer class="app-footer">
-      <p>&copy; Coffeerights. Made by Avior Kahalani</p>
+      <p class="copyrights">&copy;2021 Coffeerights.</p>
+      <p class="made-by">Made by Sharon Frenkel & Avior Kahalani</p>
   </footer>
   `,
 };
