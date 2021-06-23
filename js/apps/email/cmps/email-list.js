@@ -8,7 +8,12 @@ export default
     template: `
         <section class="email-list">
             <article v-for="email in emails" :key="email.id" class="email-preview-container">
-                <email-preview :email="email" class="email-preview" />
+                <email-preview 
+                    :email="email"
+                    @delete="emitDelete($event)"
+                    @toggleRead="emitToggleRead($event)"
+                    @reply="emitReply($event)"
+                    class="email-preview" />
                 <router-link :to="'/email/' + email.id">Details</router-link>
             </article>
         </section>
@@ -19,6 +24,15 @@ export default
     },
 
     methods: {
+        emitDelete(ev) {
+            this.$emit('delete',ev)
+        },
+        emitToggleRead(ev) {
+            this.$emit('toggle-read',ev)
+        },
+        emitReply(ev) {
+            this.$emit('reply',ev)
+        },
     },
 
     computed: {

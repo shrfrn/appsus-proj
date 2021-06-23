@@ -1,7 +1,7 @@
 import { utilService } from '../../../services/util-service.js'
 import { storageService } from '../../../services/async-storage-service.js';
 
-const APPSUS_EMAIL = 'missBook'
+const APPSUS_EMAIL = 'appsusEmail'
 const FULL_DAY = 100 * 60 * 60 * 24
 
 export const emailService = {
@@ -17,6 +17,10 @@ export const emailService = {
 function create(){
     return {
         id: null,  
+        from: '',
+        to: '',
+        cc: '',
+        bcc: '',
         subject: '',
         body: '',
         isRead: false,
@@ -27,19 +31,19 @@ function query(){
     return storageService.query(APPSUS_EMAIL)
 }
 
-function getById(bookId){
-    return storageService.get(APPSUS_EMAIL, bookId)
+function getById(emailId){
+    return storageService.get(APPSUS_EMAIL, emailId)
   }
   
-function remove(bookId){
-    storageService.remove(APPSUS_EMAIL, bookId)
+function remove(emailId){
+    storageService.remove(APPSUS_EMAIL, emailId)
 }
 
-function save(book){
-    if(book.id) {
-        storageService.put(APPSUS_EMAIL, book)
+function save(email){
+    if(email.id) {
+        return storageService.put(APPSUS_EMAIL, email)
       } else {
-        storageService.post(APPSUS_EMAIL, book)
+        return storageService.post(APPSUS_EMAIL, email)
       }
 }
     
@@ -58,6 +62,10 @@ function _createEmails() {
 const _emails = [
     {
         id: utilService.makeId(),  
+        from: '',
+        to: '',
+        cc: '',
+        bcc: '',
         subject: 'Hi there!',
         body: 'Welcome to Appsus Mail.',
         isRead: false,
@@ -65,6 +73,10 @@ const _emails = [
     },
     {
         id: utilService.makeId(),  
+        from: '',
+        to: '',
+        cc: '',
+        bcc: '',
         subject: 'Important',
         body: 'Try this.',
         isRead: true,
@@ -72,6 +84,10 @@ const _emails = [
     },
     {
         id: utilService.makeId(),  
+        from: '',
+        to: '',
+        cc: '',
+        bcc: '',
         subject: 'Warning',
         body: 'Your account may have been hacked...',
         isRead: false,
@@ -79,6 +95,10 @@ const _emails = [
     },
     {
         id: utilService.makeId(),  
+        from: '',
+        to: '',
+        cc: '',
+        bcc: '',
         subject: 'Good news!',
         body: 'You won',
         isRead: false,
@@ -86,6 +106,10 @@ const _emails = [
     },
     {
         id: utilService.makeId(),  
+        from: '',
+        to: '',
+        cc: '',
+        bcc: '',
         subject: 'Thanks',
         body: 'We appriciate your contribution',
         isRead: true,
