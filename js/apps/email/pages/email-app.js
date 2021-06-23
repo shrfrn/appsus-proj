@@ -6,6 +6,8 @@ export default {
     template: `
         <section v-if="emails">
             <button @click=compose()>Compose</button>
+            <button @click=sortBySentAt()>Sort by date</button>
+            <button @click=sortBySubject()>SortBySubject</button>
             <email-list 
                 v-if="isEmailList" 
                 :emails="emails"
@@ -24,6 +26,8 @@ export default {
             emails: null,
             repliedEmail: null,
             pageState: 'email-list',
+            sortBy: 'timestamp',
+            sortDir: 1,
         }
     },
     methods: {
@@ -34,7 +38,29 @@ export default {
 
         loadEmails() {
             emailService.query()
-            .then(emails => this.emails = emails)
+            .then(emails => {
+                this.emails = emails
+                this.sortBy = 'timestamp',
+                this.sortDir = 1,
+                this.sortBySentAt() 
+            })
+
+        },
+
+        sortBySentAt() {
+            if(this.sortBy === 'timestamp') this.sortDir *= -1
+            else this.sortDir = 1
+
+            this.emails.sort((email1, email2) => this.sortDir * (email1.sentAt - email2.sentAt))        
+            this.sortBy = 'timestamp'
+        },
+        
+        sortBySubject() {
+            if(this.sortBy === 'subject') this.sortDir *= -1
+            else this.sortDir = 1
+
+            this.emails.sort((email1, email2) => this.sortDir * (email1.subject.localeCompare(email2.subject)))        
+            this.sortBy = 'subject'
         },
 
         onEmailSent(newEmail){

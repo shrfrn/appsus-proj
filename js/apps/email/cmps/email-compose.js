@@ -7,10 +7,6 @@ export default {
     template: `
         <form class="email-compose">
             <input 
-                id="email-subject" 
-                type="text" 
-                v-model="newEmail.subject" />
-            <input 
                 id="email-to" 
                 type="text" 
                 v-model="newEmail.to" />
@@ -22,13 +18,17 @@ export default {
                 id="email-bcc" 
                 type="text" 
                 v-model="newEmail.bcc" />
+            <input 
+                id="email-subject" 
+                type="text" 
+                v-model="newEmail.subject" />
             <textarea 
                 id="email-body" 
                 cols="30" 
                 rows="10" 
                 v-model="newEmail.body">
             </textarea>
-            <button @click="send">Send</button>
+            <button @click.prevent="send">Send</button>
             <button @click.prevent="cancel">Cancel</button>
         </form>
     `,
@@ -55,17 +55,17 @@ export default {
 
     created() {
         if(this.repliedEmail){
-            console.log('this.repliedEmail ?', this.repliedEmail);
-            this.newEmail.to = this.repliedEmail.to
+            this.newEmail.to = this.repliedEmail.from
             this.newEmail.cc = this.repliedEmail.cc
             this.newEmail.bcc = this.repliedEmail.bcc
+            this.newEmail.subject = this.repliedEmail.subject
             this.newEmail.body = this.repliedEmail.body
-            this.newEmail.to = this.repliedEmail.from
         } 
     },
 
     destroyed() {
     },
+
     components: {
         emailService,
     },

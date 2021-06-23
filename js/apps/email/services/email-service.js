@@ -2,7 +2,7 @@ import { utilService } from '../../../services/util-service.js'
 import { storageService } from '../../../services/async-storage-service.js';
 
 const APPSUS_EMAIL = 'appsusEmail'
-const FULL_DAY = 100 * 60 * 60 * 24
+const FULL_DAY = 1000 * 60 * 60 * 24
 
 export const emailService = {
     create,
