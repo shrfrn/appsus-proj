@@ -1,3 +1,8 @@
+/* img {
+    width: 300px;
+    height: 300px;
+} */
+
 .note-list {
     margin: 20px;
     display: grid;
@@ -33,6 +38,8 @@
     display: flex;
     flex-direction: column;
     border: 2px solid #000;
+    width: 100%;
+    height: 100%;
 }
 
 .w-1 {
@@ -73,7 +80,7 @@
     grid-row: span 6;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
     .note-list {
         grid-template-columns: repeat(1, 1fr);
     }
@@ -85,4 +92,20 @@
     .w-6 {
         grid-column: span 1;
     }
+}
+
+/* TODO LIST */
+.done {
+    text-decoration: line-through;
+}
+
+/* PINNED SECTION */
+.pinned-list {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-auto-rows: auto;
+    grid-gap: 10px;
+    text-align: center;
+    grid-auto-flow: dense;
 }
