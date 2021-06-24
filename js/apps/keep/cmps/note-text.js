@@ -3,10 +3,14 @@ export default {
     template: `
         <section class="note-card w-1 h-1">
             <article :style="{ background: info.backgroundColor }" class="note-card-info">
-                {{info.txt}}
-                <button @click="removeNote">Delete</button>
-                <button @click="updateNote">Update</button>
-                <button @click="pinNote">Pin</button>
+                <div class="texts">
+                    {{info.txt}}
+                </div>
+                <div class="buttons-actions">
+                    <button @click="removeNote"><i class="fas fa-trash-alt"></i></button>
+                    <button @click="updateNote"><i class="fas fa-edit"></i></button>
+                    <button @click="pinNote"><i class="fas fa-thumbtack"></i></button>
+                </div>
             </article>
         </section>
     `,

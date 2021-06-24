@@ -1,0 +1,28 @@
+@font-face {
+    font-family: lato;
+    src: url(/fonts/Lato-Regular.ttf);
+}
+
+.note-filter {
+    height: 80px;
+    background-color: rgb(247, 220, 148);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+
+.note-filter input {
+    width: 20%;
+    padding: 0.8%;
+    font-family: lato;
+    font-weight: 600;
+    border: 2px solid rgb(145, 145, 145);
+    border-radius: 5px;
+}
+
+input:focus {
+    outline: none;
+}

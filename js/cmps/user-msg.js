@@ -3,9 +3,10 @@ import { eventBus } from '../services/event-bus-service.js';
 export default {
     template: `
     <div v-if="msg" class="user-msg" :class="msg.type">
+        <i class="fas fa-check"></i>
         <div class="texts">
-        <h2>{{msg.type}}</h2>
-        <p>{{msg.text}}</p>
+            <h2>{{msg.type}}</h2>
+            <p>{{msg.text}}</p>
         </div>
     </div>
     `,

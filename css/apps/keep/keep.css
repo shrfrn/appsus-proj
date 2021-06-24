@@ -1,98 +1,7 @@
-/* img {
-    width: 300px;
-    height: 300px;
-} */
-
-.note-list {
-    margin: 20px;
-    display: grid;
-    grid-template-columns: repeat(6, auto);
-    grid-auto-rows: auto;
-    grid-gap: 10px;
-    text-align: center;
-    grid-auto-flow: dense;
-}
-
-.note-card {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.note-card .image {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.note-card .image img,
-.note-card .vid video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 100% 50%;
-    cursor: pointer;
-}
-
-.note-card-info {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #000;
-    width: 100%;
-    height: 100%;
-}
-
-.w-1 {
-    grid-column: span 1;
-}
-.w-2 {
-    grid-column: span 2;
-}
-.w-3 {
-    grid-column: span 3;
-}
-.w-4 {
-    grid-column: span 4;
-}
-.w-5 {
-    grid-column: span 5;
-}
-.w-6 {
-    grid-column: span 6;
-}
-
-.h-1 {
-    grid-row: span 1;
-}
-.h-2 {
-    grid-row: span 2;
-}
-.h-3 {
-    grid-row: span 3;
-}
-.h-4 {
-    grid-row: span 4;
-}
-.h-5 {
-    grid-row: span 5;
-}
-.h-6 {
-    grid-row: span 6;
-}
-
-@media screen and (max-width: 700px) {
-    .note-list {
-        grid-template-columns: repeat(1, 1fr);
-    }
-    .w-1,
-    .w-2,
-    .w-3,
-    .w-4,
-    .w-5,
-    .w-6 {
-        grid-column: span 1;
-    }
-}
+@import './cmps/note-filter.css';
+@import './cmps/add-note.css';
+@import './cmps/note-list.css';
+@import './cmps/update-note.css';
 
 /* TODO LIST */
 .done {
@@ -101,6 +10,8 @@
 
 /* PINNED SECTION */
 .pinned-list {
+    width: 60%;
+    height: 20%;
     margin: 20px;
     display: grid;
     grid-template-columns: repeat(6, auto);
@@ -108,4 +19,8 @@
     grid-gap: 10px;
     text-align: center;
     grid-auto-flow: dense;
+}
+
+.pinned-list img {
+    width: 10%;
 }

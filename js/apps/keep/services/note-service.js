@@ -18,10 +18,8 @@ function query() {
 }
 
 function create(note) {
-    // note.id = utilService.makeId();
-    console.log('note.id :>> ', note.id);
-    console.log('note :>> ', note);
     note.isPinned = false;
+    if (!note.info.backgroundColor) note.info.backgroundColor = utilService.getRandomColor();
     if (note.type === 'noteTodo') note.info.todos = _foramtTodos(note);
 
     return storageService.post(NOTES_KEY, note);
@@ -37,11 +35,14 @@ function update(updatedNote) {
 }
 
 function setNotePinned(noteId) {
-    const idx = gNotes.findIndex((note) => {
-        return note.id === noteId;
+    return query().then((notes) => {
+        const idx = notes.findIndex((note) => {
+            return note.id === noteId;
+        });
+
+        notes[idx].isPinned = !notes[idx].isPinned;
+        return storageService.put(NOTES_KEY, notes[idx]);
     });
-    gNotes[idx].isPinned = !gNotes[idx].isPinned;
-    return storageService.put(NOTES_KEY, gNotes[idx]);
 }
 
 function _createNotes() {
@@ -54,7 +55,7 @@ function _createNotes() {
                 isPinned: false,
                 info: {
                     txt: 'Fullstack Me Baby!',
-                    backgroundColor: '#ffffff',
+                    backgroundColor: utilService.getRandomColor(),
                 },
             },
             {
@@ -64,7 +65,17 @@ function _createNotes() {
                 info: {
                     url: 'https://d1aeri3ty3izns.cloudfront.net/media/63/631151/1200/preview.jpg',
                     title: 'Me playing Mi',
-                    backgroundColor: '#ffffff',
+                    backgroundColor: utilService.getRandomColor(),
+                    txt: '',
+                },
+            },
+            {
+                id: utilService.makeId(),
+                type: 'noteAudio',
+                isPinned: false,
+                info: {
+                    url: 'https://dl.espressif.com/dl/audio/ff-16b-2c-44100hz.mp3',
+                    backgroundColor: utilService.getRandomColor(),
                     txt: '',
                 },
             },
@@ -73,7 +84,7 @@ function _createNotes() {
                 type: 'noteTodo',
                 isPinned: false,
                 info: {
-                    backgroundColor: '#ffffff',
+                    backgroundColor: utilService.getRandomColor(),
                     label: 'How was it:',
                     txt: '',
                     todos: [
@@ -94,7 +105,7 @@ function _createNotes() {
                 info: {
                     txt: 'My video!',
                     url: 'http://techslides.com/demos/sample-videos/small.mp4',
-                    backgroundColor: '#ffffff',
+                    backgroundColor: utilService.getRandomColor(),
                 },
             },
         ];

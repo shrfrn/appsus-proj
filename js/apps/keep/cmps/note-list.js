@@ -2,6 +2,7 @@ import noteText from './note-text.js';
 import noteImg from './note-img.js';
 import noteTodo from './note-todo.js';
 import noteVideo from './note-video.js';
+import noteAudio from './note-audio.js';
 
 export default {
     props: ['notes'],
@@ -15,6 +16,7 @@ export default {
         noteImg,
         noteTodo,
         noteVideo,
+        noteAudio,
     },
 
     methods: {

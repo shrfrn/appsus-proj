@@ -50,33 +50,55 @@ export default {
     methods: {
         loadNotes() {
             noteService.query().then((notes) => {
-                const msg = {
-                    text: 'Notes loaded successfully',
-                    type: 'success',
-                };
-                eventBus.$emit('show-msg', msg);
-
                 this.notes = notes.filter((note) => !note.isPinned);
                 this.pinned = notes.filter((note) => note.isPinned);
             });
         },
         addNewNote(newNote) {
-            noteService.create(newNote).then(this.loadNotes);
+            noteService.create(newNote).then(() => {
+                this.loadNotes();
+                const msg = {
+                    text: 'Note added successfully',
+                    type: 'success',
+                };
+                eventBus.$emit('show-msg', msg);
+            });
         },
         removeNote(id) {
             if (this.isUpdating) this.isUpdating = false;
-            noteService.remove(id).then(this.loadNotes);
+            noteService.remove(id).then(() => {
+                this.loadNotes();
+                const msg = {
+                    text: 'Note removed successfully',
+                    type: 'success',
+                };
+                eventBus.$emit('show-msg', msg);
+            });
         },
         setUpdate(id) {
             this.noteId = id;
             this.isUpdating = !this.isUpdating;
         },
         updateSelectedNote(updatedNote) {
-            noteService.update(updatedNote).then(this.loadNotes);
+            noteService.update(updatedNote).then(() => {
+                this.loadNotes();
+                const msg = {
+                    text: 'Note updated successfully',
+                    type: 'success',
+                };
+                eventBus.$emit('show-msg', msg);
+            });
             this.isUpdating = !this.isUpdating;
         },
         pinNote(id) {
-            noteService.setNotePinned(id).then(this.loadNotes);
+            noteService.setNotePinned(id).then(() => {
+                this.loadNotes();
+                const msg = {
+                    text: 'Note pinned successfully',
+                    type: 'success',
+                };
+                eventBus.$emit('show-msg', msg);
+            });
         },
         setFilter(filterby) {
             this.filterbyQuery.title = filterby.title;
@@ -84,5 +106,10 @@ export default {
     },
     created() {
         this.loadNotes();
+        const msg = {
+            text: 'Notes loaded successfully',
+            type: 'success',
+        };
+        eventBus.$emit('show-msg', msg);
     },
 };
