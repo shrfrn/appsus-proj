@@ -1,6 +1,10 @@
+@import './icons.css';
 @import './apps/email/cmps/email-preview.css';
 @import './apps/keep/keep.css';
 @import './apps/email/cmps/email-compose.css';
+@import './apps/email/cmps/email-preview.css';
+@import './apps/email/pages/email-app.css';
+@import './apps/email/pages/email-details.css';
 
 /* Fonts */
 
@@ -9,6 +13,13 @@
     src: url(../fonts/Lato-Regular.ttf);
 }
 
+@font-face { 
+    font-family: lato-light;
+    src: url(../fonts/Lato-Light.ttf);
+}
+
+/* General settings */
+
 * {
     margin: 0;
     padding: 0;
@@ -16,6 +27,7 @@
 }
 
 body {
+    font-family: lato;
 }
 
 /* LAYOUT */

@@ -1,8 +1,26 @@
 .email-preview * {
+    font-family: lato-light;
+    font-weight: 100;
+}
+
+.unread-email-preview-text{
     font-family: lato;
+    font-weight: bold;
 }
 
 .basic-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr 1fr 1fr;
+    gap: 6px;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.basic-preview .actions > * {
+    margin-left: 6px;
+}
+
+/* .basic-preview {
     display: flex;
     justify-content: space-between;
     margin: 0 20px;
@@ -11,13 +29,9 @@
     margin-bottom: 10px;
     transition: .2s;
 }
-
+ */
 .basic-preview:hover {
     box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
-}
-
-.basic-preview-from, .basic-preview-subject {
-    font-weight: bold;
 }
 
 .basic-preview-body {
@@ -29,17 +43,20 @@
     content: ' - ';
 }
 
-.basic-preview-sent-at {
-    font-weight: bold;
-}
-
 .expanded-preview {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+}
+.expanded-preview > * {
+    margin: 20px;
 }
 .expanded-preview h1{
     font-size: 2rem;
     font-weight: bold;
+}
+.expanded-preview .expand-icon {
+    align-self: flex-end;
+    margin-right: 50px;
 }
