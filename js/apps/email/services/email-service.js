@@ -99,8 +99,8 @@ const _emails = [
         to: 'Jonni',
         cc: '',
         bcc: '',
-        subject: 'Good news! \nLorem ipsum dolor, sit amet consectetur adipisicing elit. Quas eaque delectus illo? Qui commodi, dignissimos nemo minus voluptas molestias esse earum ab magni dolore, laborum facere voluptatibus aliquam. Aliquam maiores asperiores beatae. Eum accusantium, praesentium deserunt iure beatae repellendus minima',
-        body: 'You won',
+        subject: 'You Won!',
+        body: 'Good news! \nLorem ipsum dolor, sit amet consectetur adipisicing elit. Quas eaque delectus illo? Qui commodi, dignissimos nemo minus voluptas molestias esse earum ab magni dolore, laborum facere voluptatibus aliquam. Aliquam maiores asperiores beatae. Eum accusantium, praesentium deserunt iure beatae repellendus minima',
         isRead: false,
         sentAt: Date.now() - FULL_DAY * 3
     },

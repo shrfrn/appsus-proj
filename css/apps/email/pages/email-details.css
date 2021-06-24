@@ -1,0 +1,17 @@
+.email-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.email-details > * {
+margin: 20px;
+}
+.email-details h1{
+font-size: 2rem;
+font-weight: bold;
+}
+.email-details .actions {
+    display: flex;
+    
+}

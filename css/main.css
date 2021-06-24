@@ -4,12 +4,18 @@
 @import './apps/email/cmps/email-compose.css';
 @import './apps/email/cmps/email-preview.css';
 @import './apps/email/pages/email-app.css';
+@import './apps/email/pages/email-details.css';
 
 /* Fonts */
 
 @font-face { 
     font-family: lato;
     src: url(../fonts/Lato-Regular.ttf);
+}
+
+@font-face { 
+    font-family: lato-light;
+    src: url(../fonts/Lato-Light.ttf);
 }
 
 /* General settings */

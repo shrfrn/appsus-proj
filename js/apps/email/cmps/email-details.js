@@ -3,14 +3,16 @@
 export default {
     props: ['email'],
     template: `
-        <section>
+        <section class="email-details">
             <h1>{{email.subject}}</h1>
             <p>{{email.body}}</p>
-            <i class="icon-large back-icon" @click="emitCloseEmailDetails"></i>
-            <i class="icon-large delete-icon" @click="emitDelete"></i>
-            <i class="icon-large reply-icon" @click="emitReply"></i>
-            <i class="icon-large" :class="envelopeIcon" @click="emitToggleRead"></i>
-            <i class="icon-large star-icon" @click="emitStar"></i>
+            <div class="actions">
+                <i class="icon-large back-icon" @click="emitCloseEmailDetails"></i>
+                <i class="icon-large delete-icon" @click="emitDelete"></i>
+                <i class="icon-large reply-icon" @click="emitReply"></i>
+                <i class="icon-large" :class="envelopeIcon" @click="emitToggleRead"></i>
+                <i class="icon-large star-icon" @click="emitStar"></i>
+            </div>
 
             <!-- <button @click="emitCloseEmailDetails">back</button>
             <button @click="emitDelete">delete</button>
