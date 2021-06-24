@@ -4,13 +4,19 @@ export default {
     props: ['email'],
     template: `
         <section>
-            <h1>{{email}}</h1>
+            <h1>{{email.subject}}</h1>
             <p>{{email.body}}</p>
-            <button @click="emitCloseEmailDetails">back</button>
+            <i class="icon-large back-icon" @click="emitCloseEmailDetails"></i>
+            <i class="icon-large delete-icon" @click="emitDelete"></i>
+            <i class="icon-large reply-icon" @click="emitReply"></i>
+            <i class="icon-large" :class="envelopeIcon" @click="emitToggleRead"></i>
+            <i class="icon-large star-icon" @click="emitStar"></i>
+
+            <!-- <button @click="emitCloseEmailDetails">back</button>
             <button @click="emitDelete">delete</button>
             <button @click="emitReply">reply</button>
             <button @click="emitToggleRead">markRead</button>
-            <button @click="emitStar">star</button>
+            <button @click="emitStar">star</button> -->
         </section>
     `,
     data() {
@@ -43,6 +49,9 @@ export default {
     },
 
     computed: {
+        envelopeIcon() {
+            return this.email.isRead ? {'envelope-icon': true} : {'envelope-open-icon': true}
+        },
     },
 
     created() {

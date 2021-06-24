@@ -1,0 +1,101 @@
+/* Import fonts */
+
+@font-face {
+    font-family: fa-regular;
+    src: url(../fonts/fa-regular-400.ttf);
+}
+
+@font-face {
+    font-family: fa-solid;
+    src: url(../fonts/fa-solid-900.ttf);
+}
+
+/* Icons */
+
+i {
+    font-style: normal;
+}
+
+.icon, .icon-large {
+    color: rgb(160, 184, 207);
+    border-radius: 2rem;
+    padding: 3px;
+}
+
+.icon-large {
+    font-size: 1.5rem;
+}
+
+.icon:hover, .icon-large:hover {
+    box-shadow: 2px 2px 8px 4px rgba(228, 225, 225, 0.938);
+}
+
+.delete-icon::before {
+    content: '\f2ed';
+    font-family: fa-solid;
+}
+
+.reply-icon::before {
+    content: '\f3e5';
+    font-family: fa-solid;
+}
+
+.envelope-icon::before {
+    content: '\f0e0';
+    font-family: fa-regular;
+}
+
+.envelope-open-icon::before {
+    content: '\f2b6';
+    font-family: fa-regular;
+}
+
+.star-outline-icon::before {
+    content: '\f005';
+    font-family: fa-regular;
+}
+
+.star-outline-icon::before {
+    content: '\f005';
+    font-family: fa-solid;
+}
+
+.sort-abc-up-icon::before {
+    content: '\f15e';
+    font-family: fa-solid;
+}
+
+.sort-abc-down-icon::before {
+    content: '\f882';
+    font-family: fa-solid;
+}
+
+.plus-icon::before {
+    content: '\f067';
+    font-family: fa-solid;
+}
+
+.plus-icon-after::after {
+    content: '\f067';
+    font-family: fa-solid;
+}
+
+.search-icon::before {
+    content: '\f002';
+    font-family: fa-solid;
+}
+
+.dot-icon::before {
+    content: '\f111';
+    font-family: fa-solid;
+}
+
+.expand-icon::before {
+    content: '\f065';
+    font-family: fa-solid;
+}
+
+.back-icon::before {
+    content: '\f04a';
+    font-family: fa-solid;
+}

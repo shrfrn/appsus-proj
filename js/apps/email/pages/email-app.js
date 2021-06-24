@@ -5,17 +5,20 @@ import emailDetails from "../cmps/email-details.js";
 
 export default {
     template: `
-        <section v-if="emails">
-            <span>{{unReadCount}}</span>
-            <button @click=compose()>Compose</button>
-            <button @click=sortBySentAt()>Sort by date</button>
-            <button @click=sortBySubject()>SortBySubject</button>
-            <select v-model="filter" name="" id="">
-                <option value="All">All</option>
-                <option value="Read">Read</option>
-                <option value="Unread">Unread</option>
-            </select>
-            <input v-model="searchStr" type="text" placeholder="search...">
+        <section class="main-email-app-container" v-if="emails">
+            <nav class="mail-navbar">
+                
+                <button @click=showInbox()>inbox<span id="unread-badge">{{unReadCount}}</span></button>
+                <button @click=compose() id="compose">Compose</button>
+                <button @click=sortBySentAt()>Sort by date</button>
+                <button @click=sortBySubject()>SortBySubject</button>
+                <select v-model="filter" name="" id="">
+                    <option value="All">All</option>
+                    <option value="Read">Read</option>
+                    <option value="Unread">Unread</option>
+                </select>
+                <input v-model="searchStr" type="text" placeholder="search...">
+            </nav>
             <email-list 
                 v-if="isEmailList" 
                 :emails="getEmails"
@@ -50,6 +53,10 @@ export default {
         }
     },
     methods: {
+
+        showInbox() {
+            this.pageState = 'email-list'
+        },
 
         compose() {
             this.pageState = 'email-compose'

@@ -2,6 +2,10 @@
     font-family: lato;
 }
 
+.unread-email-preview-text{
+    font-weight: bold;
+}
+
 .basic-preview {
     display: flex;
     justify-content: space-between;
@@ -17,7 +21,7 @@
 }
 
 .basic-preview-from, .basic-preview-subject {
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .basic-preview-body {
@@ -30,7 +34,7 @@
 }
 
 .basic-preview-sent-at {
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .expanded-preview {

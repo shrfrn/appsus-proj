@@ -62,8 +62,8 @@ function _createEmails() {
 const _emails = [
     {
         id: utilService.makeId(),  
-        from: '',
-        to: '',
+        from: 'Ezra Hillelovich',
+        to: 'DooDoo',
         cc: '',
         bcc: '',
         subject: 'Hi there!',
@@ -73,8 +73,8 @@ const _emails = [
     },
     {
         id: utilService.makeId(),  
-        from: '',
-        to: '',
+        from: 'James Tompson',
+        to: 'Lalu S',
         cc: '',
         bcc: '',
         subject: 'Important',
@@ -84,8 +84,8 @@ const _emails = [
     },
     {
         id: utilService.makeId(),  
-        from: '',
-        to: '',
+        from: 'Boaz',
+        to: 'Miriam',
         cc: '',
         bcc: '',
         subject: 'Warning',
@@ -95,8 +95,8 @@ const _emails = [
     },
     {
         id: utilService.makeId(),  
-        from: '',
-        to: '',
+        from: 'Yonni',
+        to: 'Jonni',
         cc: '',
         bcc: '',
         subject: 'Good news! \nLorem ipsum dolor, sit amet consectetur adipisicing elit. Quas eaque delectus illo? Qui commodi, dignissimos nemo minus voluptas molestias esse earum ab magni dolore, laborum facere voluptatibus aliquam. Aliquam maiores asperiores beatae. Eum accusantium, praesentium deserunt iure beatae repellendus minima',
@@ -106,8 +106,8 @@ const _emails = [
     },
     {
         id: utilService.makeId(),  
-        from: '',
-        to: '',
+        from: 'Ron',
+        to: 'Ronit',
         cc: '',
         bcc: '',
         subject: 'Thanks',
