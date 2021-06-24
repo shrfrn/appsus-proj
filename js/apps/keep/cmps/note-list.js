@@ -8,7 +8,7 @@ export default {
     props: ['notes'],
     template: `
         <section class="note-list">
-            <component @pinNote="setPinned" @updateNote="setUpdate" @deleteNote="removeIt" :is="note.type" v-for="note in notes" :key="note.id" :info="note.info"  :id="note.id"></component> 
+            <component @sendAsMail="shareAsMail" @pinNote="setPinned" @updateNote="setUpdate" @deleteNote="removeIt" :is="note.type" v-for="note in notes" :key="note.id" :info="note.info"  :id="note.id"></component> 
         </section>
     `,
     components: {
@@ -28,6 +28,9 @@ export default {
         },
         setPinned(id) {
             this.$emit('pinNoteSelect', id);
+        },
+        shareAsMail(id) {
+            this.$emit('shareAsMail', id);
         },
     },
 };

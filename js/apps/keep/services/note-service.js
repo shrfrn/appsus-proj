@@ -12,6 +12,7 @@ export const noteService = {
     update,
     setNotePinned,
     createMailAsNote,
+    getById,
 };
 
 function query() {
@@ -48,6 +49,10 @@ function setNotePinned(noteId) {
         notes[idx].isPinned = !notes[idx].isPinned;
         return storageService.put(NOTES_KEY, notes[idx]);
     });
+}
+
+function getById(noteId) {
+    return storageService.get(NOTES_KEY, noteId);
 }
 
 function _createNotes() {
