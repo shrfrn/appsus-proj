@@ -4,6 +4,7 @@ import addNote from '../cmps/add-note.js';
 import updateNote from '../cmps/update-note.js';
 import searchNote from '../cmps/search-note.js';
 import pinnedNote from '../cmps/pinned-note.js';
+import { eventBus } from '../../../services/event-bus-service.js';
 
 export default {
     template: `
@@ -49,6 +50,12 @@ export default {
     methods: {
         loadNotes() {
             noteService.query().then((notes) => {
+                const msg = {
+                    text: 'Notes loaded successfully',
+                    type: 'success',
+                };
+                eventBus.$emit('show-msg', msg);
+
                 this.notes = notes.filter((note) => !note.isPinned);
                 this.pinned = notes.filter((note) => note.isPinned);
             });

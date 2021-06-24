@@ -1,29 +1,23 @@
 export default {
     template: `
         <section class="add-note">
-            <select v-model="note.type">
-                <option value="noteText">noteText</option>
-                <option value="noteImg">noteImg</option>
-                <option value="noteVideo">noteVideo</option>
-                <option value="noteTodo">noteTodo</option>
-            </select>
-            <label >Add Text</label>
-            <input type="text" v-model="note.info.txt">
-
-            <label>Add img/vid</label>
-            <input type="text" v-model="note.info.url">
-
-            <label>Add Todo seperated by commas (,)</label>
-            <input type="text" v-model="note.info.todos">
+        
+            <!-- <label >Add Text</label> -->
+            <input v-if="note.type === 'noteText'" type="text" v-model='note.info.txt' :placeholder="placeholder">
+            <!-- <label>Add img</label> -->
+            <input v-if="note.type === 'noteImg'" type="text" v-model="note.info.url" :placeholder="placeholder">
+            <!-- <label>Add VIdeo</label> -->
+            <input v-if="note.type === 'noteVideo'" type="text" v-model="note.info.url" :placeholder="placeholder">
+            <!-- <label>Add Todo seperated by commas (,)</label> -->
+            <input v-if="note.type === 'noteTodo'" type="text" v-model="note.info.todos" :placeholder="placeholder">
 
             <label>Choose Color</label>
             <input type="color" v-model="note.info.backgroundColor">
-            <select v-model="note.info.backgroundColor">
-                <option value="white">white</option>
-                <option value="blue">blue</option>
-                <option value="green">green</option>
-                <option value="red">red</option>
-            </select>
+    
+            <button @click="changeToTxt">A</button>
+            <button @click="changeToImage">Image</button>
+            <button @click="changeToVideo">Video</button>
+            <button @click="changeToTodo">TODO</button>
 
             
             <button @click="add">Add Note</button>
@@ -46,9 +40,49 @@ export default {
         };
     },
 
+    computed: {
+        placeholder() {
+            const type = this.note.type;
+            switch (type) {
+                case 'noteText':
+                    this._initNote();
+                    return 'Enter Text';
+                case 'noteImg':
+                    this._initNote();
+                    return 'Enter Img URL';
+                case 'noteVideo':
+                    this._initNote();
+                    return 'Enter Vid URL';
+                case 'noteTodo':
+                    this._initNote();
+                    return 'Enter comma seperated List';
+            }
+        },
+    },
+
     methods: {
         add() {
             this.$emit('addNote', this.note);
+        },
+        changeToTxt() {
+            this.note.type = 'noteText';
+        },
+        changeToImage() {
+            this.note.type = 'noteImg';
+        },
+        changeToVideo() {
+            this.note.type = 'noteVideo';
+        },
+        changeToTodo() {
+            this.note.type = 'noteTodo';
+        },
+        _initNote() {
+            this.note.type = 'noteText';
+            this.note.isPinned = false;
+            this.note.info.txt = '';
+            this.note.info.url = null;
+            this.note.info.todos = null;
+            this.note.info.backgroundColor = '#ffffff';
         },
     },
 };
