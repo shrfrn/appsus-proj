@@ -110,6 +110,16 @@ export default {
             this.filterbyQuery.title = filterby.title;
         },
     },
+    watch: {
+        '$route.params.mail': {
+            immediate: true,
+            handler() {
+                const { mail } = this.$route.params;
+                console.log('mail :>> ', mail);
+                noteService.createMailAsNote(mail).then(this.loadNotes);
+            },
+        },
+    },
     created() {
         this.loadNotes();
         const msg = {

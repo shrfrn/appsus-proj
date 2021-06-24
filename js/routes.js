@@ -15,6 +15,10 @@ const routes = [
         path: '/keep',
         component: keepApp,
     },
+    {
+        path: '/keep:mail',
+        component: keepApp,
+    },
 ];
 
 export const router = new VueRouter({ routes });

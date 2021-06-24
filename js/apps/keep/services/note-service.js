@@ -11,6 +11,7 @@ export const noteService = {
     remove,
     update,
     setNotePinned,
+    createMailAsNote,
 };
 
 function query() {
@@ -23,6 +24,10 @@ function create(note) {
     if (note.type === 'noteTodo') note.info.todos = _foramtTodos(note);
 
     return storageService.post(NOTES_KEY, note);
+}
+
+function createMailAsNote(mail) {
+    console.log('mail :>> ', mail);
 }
 
 function remove(noteId) {
