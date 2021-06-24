@@ -3,15 +3,25 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    max-width: 980px;
+    font-family: lato-light;
+    font-weight: 100;
 }
+
 .email-details > * {
-margin: 20px;
+    margin: 20px;
 }
 .email-details h1{
-font-size: 2rem;
-font-weight: bold;
+    font-family: lato;
+    font-size: 2rem;
+    font-weight: bold;
 }
 .email-details .actions {
     display: flex;
-    
+    gap: 20px;
+    align-self: flex-end;
+
+}
+.email-details p span {
+    margin-left: 30px;
 }
