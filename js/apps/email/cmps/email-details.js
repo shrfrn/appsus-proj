@@ -5,13 +5,15 @@ export default {
     template: `
         <section class="email-details">
             <h1>{{email.subject}}</h1>
+            <p>from {{email.from}},<span>{{sentAt}}</span></p>
             <p>{{email.body}}</p>
             <div class="actions">
                 <i class="icon-large back-icon" @click="emitCloseEmailDetails"></i>
                 <i class="icon-large delete-icon" @click="emitDelete"></i>
                 <i class="icon-large reply-icon" @click="emitReply"></i>
                 <i class="icon-large" :class="envelopeIcon" @click="emitToggleRead"></i>
-                <i class="icon-large star-icon" @click="emitStar"></i>
+                <i class="icon-large note-icon" @click="shareAsNote"></i>
+                <i class="icon-large star-outline-icon" @click="emitStar"></i>
             </div>
 
             <!-- <button @click="emitCloseEmailDetails">back</button>
@@ -48,11 +50,25 @@ export default {
             console.log('star not implemented');
             this.$emit('star',this.email)
         },
+
+        shareAsNote() {
+            console.log('note share');
+            const shareStr = JSON.stringify(this.email)
+            this.$router.push(`/keep:${shareStr}`)
+        },
     },
 
     computed: {
         envelopeIcon() {
             return this.email.isRead ? {'envelope-icon': true} : {'envelope-open-icon': true}
+        },
+        sentAt(){
+            const ts = new Date(this.email.sentAt)
+            const dd = ts.getDate()
+            const mm = ts.getMonth()
+            const yyyy = ts.getFullYear()
+
+            return `${dd} - ${mm} - ${yyyy}`
         },
     },
 

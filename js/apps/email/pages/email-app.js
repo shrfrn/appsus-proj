@@ -5,39 +5,42 @@ import emailDetails from "../cmps/email-details.js";
 
 export default {
     template: `
-        <section class="main-email-app-container" v-if="emails">
-            <nav class="mail-navbar">
-                
-                <button @click=showInbox()>inbox<span id="unread-badge">{{unReadCount}}</span></button>
-                <button @click=compose() id="compose">Compose</button>
-                <button @click=sortBySentAt()>Sort by date</button>
-                <button @click=sortBySubject()>SortBySubject</button>
+        <section class="email-container" v-if="emails">
+            <section class="email-tool-bar">
+                <input v-model="searchStr" type="text" placeholder=" search...">
                 <select v-model="filter" name="" id="">
-                    <option value="All">All</option>
-                    <option value="Read">Read</option>
-                    <option value="Unread">Unread</option>
+                    <option value="All">all</option>
+                    <option value="Read">read</option>
+                    <option value="Unread">unread</option>
                 </select>
-                <input v-model="searchStr" type="text" placeholder="search...">
-            </nav>
-            <email-list 
-                v-if="isEmailList" 
-                :emails="getEmails"
-                @email-details="onShowEmailDetails"
-                @delete="onEmailDeleted"
-                @toggle-read="onToggleRead"
-                @reply="onReply"/>
-            <email-compose 
-                v-if="isEmailCompose" 
-                :repliedEmail="repliedEmail"
-                @email-sent="onEmailSent"
-                @email-canceled="onEmailCanceled"/>
-            <email-details
-                v-if="isEmailDetails"
-                :email="currEmail"
-                @close-email-details="onCloseEmailDetails"
-                @delete="onEmailDeleted"
-                @toggle-read="onToggleRead"
-                @reply="onReply"/>
+            </section>
+            <section class="email-app-container">
+                <nav class="mail-navbar">
+                    <button @click=showInbox()>inbox<span id="unread-badge">{{unReadCount}}</span></button>
+                    <button @click=compose() id="compose">Compose</button>
+                    <button @click=sortBySentAt()>Sort by date</button>
+                    <button @click=sortBySubject()>SortBySubject</button>
+                </nav>
+                <email-list 
+                    v-if="isEmailList" 
+                    :emails="getEmails"
+                    @email-details="onShowEmailDetails"
+                    @delete="onEmailDeleted"
+                    @toggle-read="onToggleRead"
+                    @reply="onReply"/>
+                <email-compose 
+                    v-if="isEmailCompose" 
+                    :repliedEmail="repliedEmail"
+                    @email-sent="onEmailSent"
+                    @email-canceled="onEmailCanceled"/>
+                <email-details
+                    v-if="isEmailDetails"
+                    :email="currEmail"
+                    @close-email-details="onCloseEmailDetails"
+                    @delete="onEmailDeleted"
+                    @toggle-read="onToggleRead"
+                    @reply="onReply"/>
+            </section>
         </section>
     `,
     data() {
