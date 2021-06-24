@@ -3,6 +3,7 @@
     width: 90%;
     margin: 0 auto;
     display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
     grid-template-columns: repeat(6, auto);
     grid-auto-rows: auto;
     grid-gap: 10px;
@@ -35,7 +36,6 @@
     font-family: lato;
     display: flex;
     flex-direction: column;
-    /* border: 2px solid #d8d4a2; */
     box-shadow: 0 0 1px 1px #b1b0ac;
     border-radius: 5px;
     width: 100%;

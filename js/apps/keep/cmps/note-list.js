@@ -23,8 +23,8 @@ export default {
         removeIt(id) {
             this.$emit('deleteNoteSelect', id);
         },
-        setUpdate(id) {
-            this.$emit('updateNoteSelect', id);
+        setUpdate(id, info) {
+            this.$emit('updateNoteSelect', id, info);
         },
         setPinned(id) {
             this.$emit('pinNoteSelect', id);

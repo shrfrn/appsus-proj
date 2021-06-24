@@ -10,9 +10,11 @@ const options = {
     template: `
         <section class="appsus-wrapper">
             <user-msg />
-            <app-header></app-header>
-            <router-view />
-            <app-footer></app-footer>
+            <div class="main-layout">
+                <app-header></app-header>
+                <router-view />
+                <app-footer></app-footer>
+            </div>
         </section>
         `,
     components: {

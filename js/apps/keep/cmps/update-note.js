@@ -64,7 +64,6 @@ export default {
                     return 'Enter audio URL';
             }
         },
-
         type() {
             return this.note.type;
         },

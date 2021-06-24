@@ -20,7 +20,7 @@ export default {
             this.$emit('deleteNote', this.id);
         },
         updateNote() {
-            this.$emit('updateNote', this.id);
+            this.$emit('updateNote', this.id, this.info);
         },
         pinNote() {
             this.$emit('pinNote', this.id);
