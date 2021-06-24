@@ -8,6 +8,12 @@
     margin: 0 20px;
     padding: 10px;
     background-color: lightgray;
+    margin-bottom: 10px;
+    transition: .2s;
+}
+
+.basic-preview:hover {
+    box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
 }
 
 .basic-preview-from, .basic-preview-subject {

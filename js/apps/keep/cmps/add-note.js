@@ -35,6 +35,7 @@ export default {
         return {
             note: {
                 type: 'noteText',
+                isPinned: false,
                 info: {
                     txt: '',
                     url: null,

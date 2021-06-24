@@ -15,7 +15,6 @@ export default {
         removeNote() {
             this.$emit('deleteNote', this.id);
         },
-
         updateNote() {
             this.$emit('updateNote', this.id);
         },

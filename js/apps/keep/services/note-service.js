@@ -18,7 +18,10 @@ function query() {
 }
 
 function create(note) {
-    note.id = utilService.makeId();
+    // note.id = utilService.makeId();
+    console.log('note.id :>> ', note.id);
+    console.log('note :>> ', note);
+    note.isPinned = false;
     if (note.type === 'noteTodo') note.info.todos = _foramtTodos(note);
 
     return storageService.post(NOTES_KEY, note);
@@ -34,7 +37,9 @@ function update(updatedNote) {
 }
 
 function setNotePinned(noteId) {
-    const idx = gNotes.findIndex((note) => note.id === noteId);
+    const idx = gNotes.findIndex((note) => {
+        return note.id === noteId;
+    });
     gNotes[idx].isPinned = !gNotes[idx].isPinned;
     return storageService.put(NOTES_KEY, gNotes[idx]);
 }

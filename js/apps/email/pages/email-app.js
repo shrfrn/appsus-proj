@@ -1,6 +1,7 @@
 import { emailService } from "../services/email-service.js"
 import emailList from "../cmps/email-list.js"
 import emailCompose from "../cmps/email-compose.js"
+import emailDetails from "../cmps/email-details.js";
 
 export default {
     template: `
@@ -18,6 +19,7 @@ export default {
             <email-list 
                 v-if="isEmailList" 
                 :emails="getEmails"
+                @email-details="onShowEmailDetails"
                 @delete="onEmailDeleted"
                 @toggle-read="onToggleRead"
                 @reply="onReply"/>
@@ -26,12 +28,20 @@ export default {
                 :repliedEmail="repliedEmail"
                 @email-sent="onEmailSent"
                 @email-canceled="onEmailCanceled"/>
+            <email-details
+                v-if="isEmailDetails"
+                :email="currEmail"
+                @close-email-details="onCloseEmailDetails"
+                @delete="onEmailDeleted"
+                @toggle-read="onToggleRead"
+                @reply="onReply"/>
         </section>
     `,
     data() {
         return {
             emails: null,
             repliedEmail: null,
+            currEmail: null,
             pageState: 'email-list',
             sortBy: 'timestamp',
             sortDir: 1,
@@ -72,9 +82,9 @@ export default {
             this.sortBy = 'subject'
         },
         
-        onFullExpnad(ev){
-            // expand
-            this.fullExpand = true
+        onShowEmailDetails(ev){
+            this.pageState = 'email-details'
+            this.currEmail = ev
         },
 
         onEmailSent(newEmail){
@@ -100,6 +110,7 @@ export default {
         onToggleRead(email) {
             console.log('toggle');
             email.isRead = !email.isRead
+            console.log(email);
             emailService.save(email)
             .then(() => {
                 this.loadEmails()
@@ -107,12 +118,22 @@ export default {
             })
         },
 
-        onReply(emailId) {
-            emailService.getById(emailId)
-            .then(email => {
-                this.repliedEmail = email
-                this.pageState = 'email-compose'
-            })
+        onReply(repliedEmail) {
+
+            this.repliedEmail = this.emails.find(email => email.id === repliedEmail.id)
+            console.log(repliedEmail);
+            console.log(this.repliedEmail);
+            this.pageState = 'email-compose'
+
+            // emailService.getById(emailId)
+            // .then(email => {
+            //     this.repliedEmail = email
+            //     this.pageState = 'email-compose'
+            // })
+        },
+
+        onCloseEmailDetails(){
+            this.pageState = 'email-list'
         },
     },
     computed: {
@@ -146,6 +167,10 @@ export default {
         isEmailCompose(){
             return (this.pageState === 'email-compose') ? true: false
         },
+
+        isEmailDetails(){
+            return (this.pageState === 'email-details') ? true: false
+        },
     },
 
     created() {
@@ -155,5 +180,6 @@ export default {
     components: {
         emailList,
         emailCompose,
+        emailDetails,
     }
 };

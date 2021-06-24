@@ -13,9 +13,8 @@ export default
                     @delete="emitDelete($event)"
                     @toggle-read="emitToggleRead($event)"
                     @reply="emitReply($event)"
-                    @full-expanad="emitFullExpnad($event)"
+                    @email-details="emitEmailDetails($event)"
                     class="email-preview" />
-                <router-link :to="'/email/' + email.id">Details</router-link>
             </article>
         </section>
     `,
@@ -34,8 +33,8 @@ export default
         emitReply(ev) {
             this.$emit('reply',ev)
         },
-        emitFullExpnad(ev){
-            this.$emit('full-expand',ev)
+        emitEmailDetails(ev){
+            this.$emit('email-details',ev)
         },
     },
 

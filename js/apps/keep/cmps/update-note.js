@@ -38,6 +38,7 @@ export default {
             note: {
                 id: this.noteId,
                 type: 'noteText',
+                isPinned: false,
                 info: {
                     txt: '',
                     url: null,
