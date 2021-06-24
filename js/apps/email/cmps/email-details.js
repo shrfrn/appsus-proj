@@ -52,9 +52,11 @@ export default {
         },
 
         shareAsNote() {
-            console.log('note share');
-            const shareStr = JSON.stringify(this.email)
-            this.$router.push(`/keep:${shareStr}`)
+            let {id, from, to, cc, bcc, subject, body, isRead, sentAt} = this.email
+            const paramStr = `{id:${id}, from:${from}, to:${to}, cc:${cc}, bcc:${bcc}, subject:"${subject}", body:"${body}", isRead:${isRead}, sentAt:${sentAt}}`
+            // console.log(paramStr.split('@'))
+            console.log(JSON.parse(paramStr))
+            // this.$router.push(`/keep/:${shareStr}`)
         },
     },
 

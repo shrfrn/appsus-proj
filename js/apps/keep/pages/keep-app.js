@@ -114,9 +114,12 @@ export default {
         '$route.params.mail': {
             immediate: true,
             handler() {
-                const { mail } = this.$route.params;
-                console.log('mail :>> ', mail);
-                noteService.createMailAsNote(mail).then(this.loadNotes);
+                console.log(this.$route.params);
+                // const { mail } = this.$route.params;
+                // console.log('mail :>> ', mail);
+                // let {email} = this.$route.params.mail
+                // console.log(email);
+                // noteService.createMailAsNote(mail).then(this.loadNotes);
             },
         },
     },
