@@ -13,7 +13,7 @@
     src: url(../fonts/Lato-Regular.ttf);
 }
 
-@font-face { 
+@font-face {
     font-family: lato-light;
     src: url(../fonts/Lato-Light.ttf);
 }
@@ -32,7 +32,14 @@ body {
 
 /* LAYOUT */
 .main-layout {
-    max-width: 1080px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.keep-app {
+    flex: 1;
+    margin-bottom: 20px;
 }
 
 /* APP HEADER */
@@ -173,4 +180,12 @@ body {
 .error {
     color: #f16e6e;
     border-color: #f16e6e;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }

@@ -24,10 +24,17 @@ function makeId(length = 7) {
 }
 
 function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+    const colors = [
+        '#A2DBFA',
+        '#66DE93',
+        '#F5A962',
+        '#DBE6FD',
+        '#39A6A3',
+        '#FFF5B7',
+        '#867AE9',
+        '#CE97B0',
+    ];
+    const idx = [Math.floor(Math.random() * colors.length)];
+
+    return colors[idx];
 }

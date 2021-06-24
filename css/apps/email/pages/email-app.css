@@ -1,6 +1,7 @@
-.main-email-app-container{
+.main-email-app-container {
     display: flex;
     justify-content: space-between;
+    flex: 1;
 }
 
 .mail-navbar {
@@ -21,7 +22,7 @@
     box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
 }
 
-#unread-badge{
+#unread-badge {
     padding-left: 6px;
 }
 

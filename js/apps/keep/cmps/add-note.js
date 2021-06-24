@@ -56,19 +56,14 @@ export default {
             const isChanged = true;
             switch (type) {
                 case 'noteText':
-                    // this._initNote();
                     return 'Enter Text';
                 case 'noteImg':
-                    // this._initNote();
                     return 'Enter Img URL';
                 case 'noteVideo':
-                    // this._initNote();
                     return 'Enter Vid URL';
                 case 'noteTodo':
-                    // this._initNote();
                     return 'Enter comma seperated List';
                 case 'noteAudio':
-                    // this._initNote();
                     return 'Enter audio URL';
             }
             if (isChanged) _initNote();
@@ -79,13 +74,15 @@ export default {
         add() {
             console.log('this.note :>> ', this.note);
             this.$emit('addNote', this.note);
+            setTimeout(() => {
+                this._initNote();
+            }, 2);
         },
         changeToTxt() {
             this.note.type = 'noteText';
         },
         changeToImage() {
             this.note.type = 'noteImg';
-            console.log(' this.note.type :>> ', this.note.type);
         },
         changeToVideo() {
             this.note.type = 'noteVideo';

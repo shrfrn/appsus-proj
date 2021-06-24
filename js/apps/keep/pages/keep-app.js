@@ -76,6 +76,12 @@ export default {
             });
         },
         setUpdate(id) {
+            const msg = {
+                text: 'You can start updating',
+                type: 'success',
+            };
+            eventBus.$emit('show-msg', msg);
+
             this.noteId = id;
             this.isUpdating = !this.isUpdating;
         },
