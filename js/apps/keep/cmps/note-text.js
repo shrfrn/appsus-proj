@@ -10,6 +10,7 @@ export default {
                     <button @click="removeNote"><i class="fas fa-trash-alt"></i></button>
                     <button @click="updateNote"><i class="fas fa-edit"></i></button>
                     <button @click="pinNote"><i class="fas fa-thumbtack"></i></button>
+                    <button @click="sendAsMail"><i class="fas fa-envelope"></i></button>
                 </div>
             </article>
         </section>
@@ -24,6 +25,9 @@ export default {
         },
         pinNote() {
             this.$emit('pinNote', this.id);
+        },
+        sendAsMail() {
+            this.$emit('sendAsMail', this.id);
         },
     },
 };

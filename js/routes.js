@@ -12,11 +12,15 @@ const routes = [
         component: emailApp,
     },
     {
+        path: '/email/:note',
+        component: emailApp,
+    },
+    {
         path: '/keep',
         component: keepApp,
     },
     {
-        path: '/keep:mail',
+        path: '/keep/:mail',
         component: keepApp,
     },
 ];

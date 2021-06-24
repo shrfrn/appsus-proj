@@ -13,7 +13,7 @@ export default {
             <add-note v-if="!isUpdating" @addNote ="addNewNote"  />
             <update-note v-if="isUpdating" :noteId="noteId" @updateNote="updateSelectedNote"/>
             <pinned-note @pinNoteSelect="pinNote" @updateNoteSelect="setUpdate" @deleteNoteSelect="removeNote" v-if="pinned" :pinnedNotes="pinned" />
-            <note-list :notes="notesToShow" @pinNoteSelect="pinNote"  @updateNoteSelect="setUpdate" @deleteNoteSelect="removeNote" v-if="notes"/>
+            <note-list :notes="notesToShow" @shareAsMail="shareAsMail" @pinNoteSelect="pinNote"  @updateNoteSelect="setUpdate" @deleteNoteSelect="removeNote" v-if="notes"/>
         </section>
         `,
 
@@ -96,6 +96,14 @@ export default {
             });
             this.isUpdating = !this.isUpdating;
         },
+        shareAsMail(id) {
+            // console.log('id :>> ', id);
+            noteService.getById(id).then((note) => {
+                const formattedNote = JSON.stringify(note);
+                console.log('formattedNote :>> ', formattedNote);
+                this.$router.push(`/email/:${formattedNote}`);
+            });
+        },
         pinNote(id) {
             noteService.setNotePinned(id).then(() => {
                 this.loadNotes();
@@ -110,16 +118,16 @@ export default {
             this.filterbyQuery.title = filterby.title;
         },
     },
-    watch: {
-        '$route.params.mail': {
-            immediate: true,
-            handler() {
-                const { mail } = this.$route.params;
-                console.log('mail :>> ', mail);
-                noteService.createMailAsNote(mail).then(this.loadNotes);
-            },
-        },
-    },
+    // watch: {
+    //     '$route.params.mail': {
+    //         immediate: true,
+    //         handler() {
+    //             const { mail } = this.$route.params;
+    //             console.log('mail :>> ', mail);
+    //             noteService.createMailAsNote(mail).then(this.loadNotes);
+    //         },
+    //     },
+    // },
     created() {
         this.loadNotes();
         const msg = {
