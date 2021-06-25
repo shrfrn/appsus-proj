@@ -1,8 +1,8 @@
 export default {
     props: ['info', 'id'],
     template: `
-        <section class="note-card w-1 h-1">
-            <article :style="{ background: info.backgroundColor }" class="note-card-info">
+        <!-- <section class="note-card w-1 h-1"> -->
+            <article :style="{ background: info.backgroundColor }" class="note-card-info note-card w-1 h-1">
                 <div class="texts">
                     {{info.txt}}
                 </div>
@@ -13,7 +13,7 @@ export default {
                     <button @click="sendAsMail"><i class="fas fa-envelope"></i></button>
                 </div>
             </article>
-        </section>
+        <!-- </section> -->
     `,
 
     methods: {

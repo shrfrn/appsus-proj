@@ -1,8 +1,8 @@
 export default {
     props: ['info', 'id'],
     template: `
-            <section class="note-card w-2 h-1">
-            <article :style="{ background: info.backgroundColor }" class="note-card-info note-mail">
+            <!-- <section class="note-card w-2 h-1"> -->
+            <article :style="{ background: info.backgroundColor }" class="note-card-info note-mail note-card w-2 h-1">
                 <div class="texts">
                     
                     <p>FROM: <span>{{info.from}}</span> TO: <span>{{info.to}}</span></p>
@@ -18,7 +18,7 @@ export default {
                     <button @click="sendAsMail"><i class="fas fa-envelope"></i></button>
                 </div>
             </article>
-        </section>
+        <!-- </section> -->
         `,
     computed: {
         time() {
