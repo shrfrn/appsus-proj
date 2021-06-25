@@ -2,6 +2,21 @@
     margin-top: 20px;
     outline: brown;
 }
+.email-preview-list-complete-item {
+    transition: all 1s;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.email-preview-list-complete-enter, .email-preview-list-complete-leave-to{
+    opacity: 0;
+    transform: translateY(30px);
+}
+
 .email-preview-list-move {
     transition: transform 1s;
-  }
+}
+
+.email-preview-list-complete-leave-active {
+    position: absolute;
+}
