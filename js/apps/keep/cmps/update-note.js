@@ -10,6 +10,7 @@ export default {
                     <input v-if="note.type === 'noteVideo'" type="text" v-model="note.info.url" :placeholder="placeholder">
                     <input v-if="note.type === 'noteTodo'" type="text" v-model="note.info.todos" :placeholder="placeholder">
                     <input v-if="note.type === 'noteAudio'" type="text" v-model="note.info.url" :placeholder="placeholder">
+                    <input v-if="note.type === 'noteMail'" type="text" v-model="note.info.txt" :placeholder="placeholder">
             </div>
 
             <div class="buttons">
@@ -23,6 +24,7 @@ export default {
                 <button @click="changeToVideo"><i class="fas fa-video"></i></button>
                 <button @click="changeToTodo"><i class="fas fa-list"></i></button>
                 <button @click="changeToAudio"><i class="fas fa-volume-up"></i></button>
+                <button @click="changeToMail"><i class="fas fa-envelope-open-text"></i></i></button>
             </div>
             
             <div class="update-btn">
@@ -62,6 +64,8 @@ export default {
                     return 'Enter comma seperated List';
                 case 'noteAudio':
                     return 'Enter audio URL';
+                case 'noteMail':
+                    return 'Enter Mail text';
             }
         },
         type() {
@@ -87,6 +91,9 @@ export default {
         },
         changeToTodo() {
             this.note.type = 'noteTodo';
+        },
+        changeToMail() {
+            this.note.type = 'noteMail';
         },
         togglePalette() {
             this.isPalette = !this.isPalette;

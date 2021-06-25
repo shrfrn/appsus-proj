@@ -2,6 +2,7 @@ import { emailService } from '../services/email-service.js';
 import emailList from '../cmps/email-list.js';
 import emailCompose from '../cmps/email-compose.js';
 import emailDetails from '../cmps/email-details.js';
+import { eventBus } from '../../../services/event-bus-service.js';
 
 export default {
     template: `
@@ -139,6 +140,11 @@ export default {
             this.pageState = 'email-list';
         },
     },
+    mounted() {
+        eventBus.$on('shareNote', (data) => {
+            console.log('data :>> ', data);
+        });
+    },
     computed: {
         getEmails() {
             let filteredEmails = this.emails;
@@ -177,14 +183,6 @@ export default {
     },
 
     created() {
-        console.log('this.$route.params :>> ', this.$route.params);
-        // let { note } = this.$route.params;
-        // note = note.slice(1);
-        // console.log('note :>> ', note);
-        // note = note.replace('#', ' ');
-        // let formattedNote = JSON.parse(note);
-        // console.log('formattedNote :>> ', formattedNote);
-
         this.loadEmails();
     },
 

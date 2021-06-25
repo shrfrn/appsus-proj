@@ -1,7 +1,7 @@
 export default {
     props: ['info', 'id'],
     template: `
-        <section class="note-card w-2 h-2">
+        <section class="note-card w-2 h1">
             <article :style="{ background: info.backgroundColor }" class="note-card-info">
                 <div class="vid">
                     <video width="320" height="240" controls>

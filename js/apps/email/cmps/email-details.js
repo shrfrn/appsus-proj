@@ -1,4 +1,5 @@
 // Component: email-details
+import { eventBus } from '../../../services/event-bus-service.js';
 
 export default {
     props: ['email'],
@@ -24,59 +25,61 @@ export default {
         </section>
     `,
     data() {
-        return {
-        }
+        return {};
     },
 
     methods: {
-
-        emitCloseEmailDetails(){
-            this.$emit('close-email-details')
+        emitCloseEmailDetails() {
+            this.$emit('close-email-details');
         },
 
         emitDelete() {
-            this.$emit('delete',this.email)
+            this.$emit('delete', this.email);
         },
 
         emitToggleRead() {
-            this.$emit('toggle-read',this.email)
+            this.$emit('toggle-read', this.email);
         },
 
         emitReply() {
-            this.$emit('reply',this.email)
+            this.$emit('reply', this.email);
         },
 
         emitStar() {
             console.log('star not implemented');
-            this.$emit('star',this.email)
+            this.$emit('star', this.email);
         },
 
         shareAsNote() {
-            let {id, from, to, cc, bcc, subject, body, isRead, sentAt} = this.email
-            const paramStr = `{id:${id}, from:${from}, to:${to}, cc:${cc}, bcc:${bcc}, subject:"${subject}", body:"${body}", isRead:${isRead}, sentAt:${sentAt}}`
-            // console.log(paramStr.split('@'))
-            console.log(JSON.parse(paramStr))
+            console.log('this.email :>> ', this.email);
+            eventBus.$emit('shareMail', this.email);
+            this.$router.push(`/keep`);
+            // let {id, from, to, cc, bcc, subject, body, isRead, sentAt} = this.email
+            // const paramStr = `{id:${id}, from:${from}, to:${to}, cc:${cc}, bcc:${bcc}, subject:"${subject}", body:"${body}", isRead:${isRead}, sentAt:${sentAt}}`
+            // // console.log(paramStr.split('@'))
+            // console.log(JSON.parse(paramStr))
             // this.$router.push(`/keep/:${shareStr}`)
         },
     },
 
     computed: {
         envelopeIcon() {
-            return this.email.isRead ? {'envelope-icon': true} : {'envelope-open-icon': true}
+            return this.email.isRead ? { 'envelope-icon': true } : { 'envelope-open-icon': true };
         },
-        sentAt(){
-            const ts = new Date(this.email.sentAt)
-            const dd = ts.getDate()
-            const mm = ts.getMonth()
-            const yyyy = ts.getFullYear()
+        sentAt() {
+            const ts = new Date(this.email.sentAt);
+            const dd = ts.getDate();
+            const mm = ts.getMonth();
+            const yyyy = ts.getFullYear();
 
-            return `${dd} - ${mm} - ${yyyy}`
+            return `${dd} - ${mm} - ${yyyy}`;
         },
     },
-
-    created() {
+    components: {
+        eventBus,
     },
 
-    destroyed() {
-    }
-}
+    created() {},
+
+    destroyed() {},
+};

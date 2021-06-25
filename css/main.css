@@ -5,6 +5,7 @@
 @import './apps/email/cmps/email-preview.css';
 @import './apps/email/pages/email-app.css';
 @import './apps/email/pages/email-details.css';
+@import './pages/homepage.css';
 
 /* Fonts */
 
@@ -46,6 +47,10 @@ body {
     margin-bottom: 20px;
 }
 
+.main-homepage {
+    flex: 1;
+}
+
 /* APP HEADER */
 .app-header {
     height: 5vh;
@@ -74,69 +79,6 @@ body {
 
 .app-header .links a:hover {
     color: #a1d4b1;
-}
-
-/* APP HOMEPAGE */
-.main-homepage {
-    height: 85vh;
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
-}
-
-.main-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 50%;
-    align-items: center;
-    text-align: center;
-    margin-top: 80px;
-    /* gap: 30px; */
-}
-
-.main-container img {
-    width: 200px;
-    object-fit: cover;
-}
-
-.homepage-texts {
-    margin-bottom: 80px;
-}
-
-.homepage-texts h1 {
-    font-size: 48px;
-    color: #5a5a5a;
-}
-
-.homepage-texts p {
-    font-size: 20px;
-}
-
-.homepage-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    height: 500px;
-    gap: 50px;
-}
-
-.link-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.link {
-    transition: 0.2s;
-}
-
-.link:hover:not(.link-home) {
-    transform: scale(110%, 110%);
-}
-
-.link-mail,
-.link-keep {
-    align-self: flex-end;
 }
 
 /* APP FOOTER */
@@ -184,12 +126,4 @@ body {
 .error {
     color: #f16e6e;
     border-color: #f16e6e;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-    opacity: 0;
 }

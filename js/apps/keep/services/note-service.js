@@ -28,7 +28,21 @@ function create(note) {
 }
 
 function createMailAsNote(mail) {
-    console.log('mail :>> ', mail);
+    const note = {
+        id: mail.id,
+        type: 'noteMail',
+        isPinned: false,
+        info: {
+            to: mail.to,
+            from: mail.from,
+            sentAt: mail.sentAt,
+            subject: mail.subject,
+            txt: mail.body,
+        },
+    };
+    if (!note.info.backgroundColor) note.info.backgroundColor = utilService.getRandomColor();
+    return storageService.post(NOTES_KEY, note);
+    // console.log('mail :>> ', mail);
 }
 
 function remove(noteId) {
@@ -37,6 +51,8 @@ function remove(noteId) {
 
 function update(updatedNote) {
     if (updatedNote.type === 'noteTodo') updatedNote.info.todos = _foramtTodos(updatedNote);
+    if (updatedNote.type === 'noteMail') updatedNote.info.sentAt = new Date();
+    updatedNote.info.backgroundColor = utilService.getRandomColor();
     return storageService.put(NOTES_KEY, updatedNote);
 }
 
@@ -68,6 +84,7 @@ function _createNotes() {
                     backgroundColor: utilService.getRandomColor(),
                 },
             },
+
             {
                 id: utilService.makeId(),
                 type: 'noteImg',
@@ -133,6 +150,16 @@ function _foramtTodos(note) {
             isDone: false,
         };
     });
+}
+
+{
+    /* <div class="texts">
+        <p>{{mail.id}}</p>
+        <p>FROM: {{mail.from}} TO: {{mail.to}}</p>
+        <p>{{mail.body}}</p>
+        <p>SENT AT: {{time}}</p>
+        {{info.txt}}
+</div> */
 }
 
 // VIDEO SAMPLE:

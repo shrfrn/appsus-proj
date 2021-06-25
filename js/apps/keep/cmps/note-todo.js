@@ -1,7 +1,7 @@
 export default {
     props: ['info', 'id'],
     template: `
-        <section class="note-card w-1 h-1">
+        <section class="note-card w-2 h1">
             <article :style="{ background: info.backgroundColor }" class="note-card-info todo-component">
                 <div class="texts">
                     <h2>{{info.txt}}</h2>

@@ -97,11 +97,11 @@ export default {
             this.isUpdating = !this.isUpdating;
         },
         shareAsMail(id) {
-            // console.log('id :>> ', id);
             noteService.getById(id).then((note) => {
                 const formattedNote = JSON.stringify(note);
                 console.log('formattedNote :>> ', formattedNote);
-                this.$router.push(`/email/:${formattedNote}`);
+                eventBus.$emit('shareNote', formattedNote);
+                this.$router.push(`/email`);
             });
         },
         pinNote(id) {
@@ -118,17 +118,16 @@ export default {
             this.filterbyQuery.title = filterby.title;
         },
     },
-    // watch: {
-    //     '$route.params.mail': {
-    //         immediate: true,
-    //         handler() {
-    //             const { mail } = this.$route.params;
-    //             console.log('mail :>> ', mail);
-    //             noteService.createMailAsNote(mail).then(this.loadNotes);
-    //         },
-    //     },
-    // },
+    mounted() {
+        eventBus.$on('shareMail', (mail) => {
+            noteService.createMailAsNote(mail).then(this.loadNotes);
+        });
+    },
+
     created() {
+        eventBus.$on('shareMail', (mail) => {
+            noteService.createMailAsNote(mail).then(this.loadNotes);
+        });
         this.loadNotes();
         const msg = {
             text: 'Notes loaded successfully',
