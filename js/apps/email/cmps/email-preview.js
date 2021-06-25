@@ -5,7 +5,7 @@ export default
     props: ['email'],
     
     template: `
-        <div @click="expandPreview" class="email-preview">
+        <div @click="expandPreview" :class="previewSelected" class="email-preview">
             <div class="basic-preview">
                 <p :class="isRead" class="basic-preview-from">{{email.from}}</p>
                 <p :class="isRead" class="basic-preview-subject">{{getSubject(40)}}</p>
@@ -28,12 +28,14 @@ export default
     data() {
         return {
             isExpandedPreview: false,
+            isPreviewSelected: false,
         }
     },
 
     methods: {
         expandPreview() {
             this.isExpandedPreview = !this.isExpandedPreview 
+            this.isPreviewSelected = !this.isPreviewSelected
         },
 
         showEmailDetails() {
@@ -73,6 +75,9 @@ export default
         },
         isRead() {
             return (this.email.isRead) ? {'unread-email-preview-text': false} : {'unread-email-preview-text': true}
+        },
+        previewSelected(){
+            return (this.isPreviewSelected) ? {'preview-selected': true} :{'preview-selected': false} 
         },
     },
 

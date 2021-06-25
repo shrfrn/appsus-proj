@@ -143,6 +143,12 @@ export default {
     mounted() {
         eventBus.$on('shareNote', (data) => {
             console.log('data :>> ', data);
+            this.repliedEmail = {}
+            this.repliedEmail.subject = 'New note'
+            this.repliedEmail.body = 'data.info.txt'
+            // this.pageState = 'email-compose'
+            this.compose()
+            console.log(this.pageState)
         });
     },
     computed: {
@@ -183,7 +189,17 @@ export default {
     },
 
     created() {
-        this.loadEmails();
+        // eventBus.$on('shareNote', (data) => {
+        //     console.log('data :>> ', data);
+        //     this.repliedEmail = {}
+        //     this.repliedEmail.subject = 'New note'
+        //     this.repliedEmail.body = 'data.info.txt'
+        //     this.$route.pageState = 'email-compose'
+        //     this.compose()
+        //     // console.log('this.$route.pageState', this.$route.pageState);
+        //     console.log(this.pageState)
+        // });
+        this.loadEmails()
     },
 
     components: {

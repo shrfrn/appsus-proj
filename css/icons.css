@@ -35,6 +35,11 @@ i {
     font-family: fa-solid;
 }
 
+.send-icon::before {
+    content: '\f1d8';
+    font-family: fa-regular;
+}
+
 .reply-icon::before {
     content: '\f3e5';
     font-family: fa-solid;

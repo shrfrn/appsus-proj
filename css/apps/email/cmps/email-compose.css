@@ -2,5 +2,53 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    width: 500px;
+    width: 80vw;
+    max-width: 1000px;
+}
+.input-field{
+    display: flex;
+    align-items: flex-end;
+    height: 2rem;
+}
+.email-compose input, .email-compose label {
+    border: none;
+    border-bottom: 1px solid lightgray;
+    outline: none;
+}
+.email-compose input{
+    width: 100%;
+    color:rgb(59, 58, 58);
+}
+.email-compose label{
+    color: lightgrey;
+    padding-right: .6rem;
+}
+
+.compose-msg-boby{
+    position: relative;
+    border-bottom: 1px solid lightgray;
+}
+
+.compose-msg-boby .actions{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.email-compose textarea{
+    font-family: lato;
+    font-size: 1rem;
+    color:rgb(59, 58, 58);
+    padding-top: 1rem;
+    padding-left: .5rem;
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+}
+.email-compose textarea::placeholder{
+    color: lightgrey;
 }
