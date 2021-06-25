@@ -13,12 +13,13 @@
 
 .basic-preview {
     max-width: 1000px;
-    width: 80vw;
+    width: 90vw;
     display: grid;
     grid-template-columns: 1fr 1fr 4fr 1fr 1fr;
     gap: 6px;
     padding: 10px;
     border-bottom: 1px solid lightgray;
+    cursor: pointer;
 }
 
 .basic-preview .actions > * {

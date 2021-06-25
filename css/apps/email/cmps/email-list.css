@@ -2,6 +2,11 @@
     margin-top: 20px;
     outline: brown;
 }
+.sort-btn {
+    font-family: lato-light;
+    color: lightgrey;
+    cursor: pointer;
+}
 .email-preview-list-complete-item {
     transition: all 1s;
     display: inline-block;
@@ -19,4 +24,20 @@
 
 .email-preview-list-complete-leave-active {
     position: absolute;
+}
+
+.sort-field-des::after{
+    content: '\f063';
+    font-family: fa-solid;
+    font-size: .8rem;
+    color: lightgrey;
+    padding-left: .8rem;
+}
+
+.sort-field-asc::after{
+    content: '\f062';
+    font-family: fa-solid;
+    font-size: .8rem;
+    color: lightgrey;
+    padding-left: .8rem;
 }

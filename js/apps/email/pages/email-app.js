@@ -3,11 +3,19 @@ import emailList from '../cmps/email-list.js';
 import emailCompose from '../cmps/email-compose.js';
 import emailDetails from '../cmps/email-details.js';
 import { eventBus } from '../../../services/event-bus-service.js';
+import { showMsg } from '../../../services/event-bus-service.js';
 
 export default {
     template: `
         <section class="email-container" v-if="emails">
             <section class="email-tool-bar">
+                <div class="nav-icons">
+                    <div class="inbox-btn">
+                        <i class="icon-large inbox-icon" @click.stop="showInbox()"></i>
+                        <span>{{unReadCount}}</span>
+                    </div>
+                    <i class="icon-large compose-icon" @click.stop="compose()"></i>
+                </div>
                 <input v-model="searchStr" type="text" placeholder=" search...">
                 <select v-model="filter" name="" id="">
                     <option value="All">all</option>
@@ -16,15 +24,10 @@ export default {
                 </select>
             </section>
             <section class="email-app-container">
-                <nav class="mail-navbar">
-                    <button @click=showInbox()>inbox<span id="unread-badge">{{unReadCount}}</span></button>
-                    <button @click=compose() id="compose">Compose</button>
-                    <button @click=sortBySentAt()>Sort by date</button>
-                    <button @click=sortBySubject()>SortBySubject</button>
-                </nav>
                 <email-list 
                     v-if="isEmailList" 
                     :emails="getEmails"
+                    @sort="onSortList"
                     @email-details="onShowEmailDetails"
                     @delete="onEmailDeleted"
                     @toggle-read="onToggleRead"
@@ -50,7 +53,7 @@ export default {
             repliedEmail: null,
             currEmail: null,
             pageState: 'email-list',
-            sortBy: 'timestamp',
+            sortBy: 'sentAt',
             sortDir: 1,
             filter: 'All',
             searchStr: '',
@@ -68,26 +71,14 @@ export default {
         loadEmails() {
             emailService.query().then((emails) => {
                 this.emails = emails;
-                (this.sortBy = 'timestamp'), (this.sortDir = 1), this.sortBySentAt();
             });
         },
-
-        sortBySentAt() {
-            if (this.sortBy === 'timestamp') this.sortDir *= -1;
-            else this.sortDir = 1;
-
-            this.emails.sort((email1, email2) => this.sortDir * (email1.sentAt - email2.sentAt));
-            this.sortBy = 'timestamp';
-        },
-
-        sortBySubject() {
-            if (this.sortBy === 'subject') this.sortDir *= -1;
-            else this.sortDir = 1;
-
+        
+        onSortList(ev){
             this.emails.sort(
-                (email1, email2) => this.sortDir * email1.subject.localeCompare(email2.subject)
+                (email1, email2) => ev.sortDir * String(email1[ev.sortBy]).localeCompare(String(email2[ev.sortBy]))
             );
-            this.sortBy = 'subject';
+            
         },
 
         onShowEmailDetails(ev) {
@@ -100,17 +91,19 @@ export default {
             console.log('sent', newEmail);
             emailService.save(newEmail).then(() => {
                 this.loadEmails();
+                showMsg({text: 'Message sent.', type: 'success'})
                 this.pageState = 'email-list';
             });
         },
-
+        
         onEmailCanceled() {
             this.pageState = 'email-list';
         },
-
+        
         onEmailDeleted(emailId) {
             emailService.remove(emailId).then(() => {
                 this.loadEmails();
+                showMsg({text: 'Message deleted.', type: 'success'})
                 this.pageState = 'email-list';
             });
         },
@@ -121,7 +114,6 @@ export default {
             console.log(email);
             emailService.save(email).then(() => {
                 this.loadEmails();
-                // this.pageState = 'email-list';
             });
         },
 
@@ -130,12 +122,6 @@ export default {
             console.log(repliedEmail);
             console.log(this.repliedEmail);
             this.pageState = 'email-compose';
-
-            // emailService.getById(emailId)
-            // .then(email => {
-            //     this.repliedEmail = email
-            //     this.pageState = 'email-compose'
-            // })
         },
 
         onCloseEmailDetails() {
@@ -148,7 +134,6 @@ export default {
             this.repliedEmail = {}
             this.repliedEmail.subject = 'New note'
             this.repliedEmail.body = 'data.info.txt'
-            // this.pageState = 'email-compose'
             this.compose()
             console.log(this.pageState)
         });
