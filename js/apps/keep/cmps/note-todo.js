@@ -1,8 +1,8 @@
 export default {
     props: ['info', 'id'],
     template: `
-        <section class="note-card w-2 h1">
-            <article :style="{ background: info.backgroundColor }" class="note-card-info todo-component">
+        <!-- <section class="note-card w-2 h1"> -->
+            <article :style="{ background: info.backgroundColor }" class="note-card-info todo-component note-card w-2 h1">
                 <div class="texts">
                     <h2>{{info.txt}}</h2>
                 </div>
@@ -22,7 +22,7 @@ export default {
                     <button @click="pinNote"><i class="fas fa-thumbtack"></i></button>
                 </div>
             </article>
-        </section>
+        <!-- </section> -->
     `,
 
     methods: {

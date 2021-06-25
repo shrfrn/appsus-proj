@@ -1,8 +1,8 @@
 export default {
     props: ['info', 'id'],
     template: `
-        <section class="note-card w-2 h1">
-            <article :style="{ background: info.backgroundColor }" class="note-card-info">
+        <!-- <section class="note-card w-2 h1"> -->
+            <article :style="{ background: info.backgroundColor }" class="note-card-info note-card w-2 h1">
                 <div class="vid">
                     <video width="320" height="240" controls>
                         <source :src="info.url" type="video/mp4">
@@ -16,7 +16,7 @@ export default {
                 </div>
                 
             </article>
-        </section>
+        <!-- </section> -->
     `,
 
     methods: {

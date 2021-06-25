@@ -96,3 +96,10 @@
     outline: none;
     cursor: pointer;
 }
+
+@media screen and (max-width: 950px) {
+    .add-container {
+        width: 90%;
+        height: 80px;
+    }
+}

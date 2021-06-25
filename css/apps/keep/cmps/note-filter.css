@@ -32,3 +32,9 @@
     outline: none;
     transform: scale(105%, 105%);
 }
+
+@media screen and (max-width: 950px) {
+    .note-filter input {
+        width: 50%;
+    }
+}

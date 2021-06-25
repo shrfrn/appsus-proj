@@ -1,8 +1,8 @@
 export default {
     props: ['info', 'id'],
     template: `
-        <section class="note-card w-2 h-1">
-            <article :style="{ background: info.backgroundColor }" class="note-card-info">
+        <!-- <section class="note-card w-2 h-1"> -->
+            <article :style="{ background: info.backgroundColor }" class="note-card-info note-card w-2 h-1">
                 <div class="texts">
                     <h2>{{info.txt}}</h2>
                 </div>
@@ -19,7 +19,7 @@ export default {
                 </div>
                 
             </article>
-        </section>
+        <!-- </section> -->
     `,
 
     methods: {

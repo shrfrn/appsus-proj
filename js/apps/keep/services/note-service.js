@@ -42,7 +42,6 @@ function createMailAsNote(mail) {
     };
     if (!note.info.backgroundColor) note.info.backgroundColor = utilService.getRandomColor();
     return storageService.post(NOTES_KEY, note);
-    // console.log('mail :>> ', mail);
 }
 
 function remove(noteId) {
