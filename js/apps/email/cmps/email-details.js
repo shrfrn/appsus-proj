@@ -17,11 +17,6 @@ export default {
                 <i class="icon-large star-outline-icon" @click="emitStar"></i>
             </div>
 
-            <!-- <button @click="emitCloseEmailDetails">back</button>
-            <button @click="emitDelete">delete</button>
-            <button @click="emitReply">reply</button>
-            <button @click="emitToggleRead">markRead</button>
-            <button @click="emitStar">star</button> -->
         </section>
     `,
     data() {
@@ -64,7 +59,7 @@ export default {
 
     computed: {
         envelopeIcon() {
-            return this.email.isRead ? { 'envelope-icon': true } : { 'envelope-open-icon': true };
+            return this.email.isRead ? { 'envelope-open-icon': true } : { 'envelope-icon': true };
         },
         sentAt() {
             const ts = new Date(this.email.sentAt);
@@ -79,7 +74,9 @@ export default {
         eventBus,
     },
 
-    created() {},
+    created() {
+        if(!this.email.isRead)  this.emitToggleRead(this.email)
+    },
 
     destroyed() {},
 };

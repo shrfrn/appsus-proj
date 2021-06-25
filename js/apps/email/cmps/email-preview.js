@@ -17,11 +17,13 @@ export default
                 </div>
                 <p :class="isRead" class="basic-preview-sent-at">{{sentAt}}</p>
             </div>
-            <div v-if="isExpandedPreview" class="expanded-preview">
-                <h1 class="basic-preview-subject">{{email.subject}}</h1>
-                <p>{{getBody(180)}}</p>
-                <i class="icon-large expand-icon" @click="showEmailDetails"></i>
-            </div>
+            <transition name="expanded-preview">
+                <div v-if="isExpandedPreview" class="expanded-preview">
+                    <h1 class="basic-preview-subject">{{email.subject}}</h1>
+                    <p>{{getBody(180)}}</p>
+                    <i class="icon-large expand-icon" @click="showEmailDetails"></i>
+                </div>
+            </transition>
         </div>
     `,
 
@@ -71,6 +73,7 @@ export default
             return `${dd} - ${mm} - ${yyyy}`
         },
         envelopeIcon() {
+            console.log(this.email);
             return this.email.isRead ? {'envelope-open-icon': true} : {'envelope-icon': true}
         },
         isRead() {

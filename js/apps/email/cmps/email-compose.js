@@ -43,8 +43,8 @@ export default {
                     v-model="newEmail.body">
                 </textarea>
                 <div class="actions">
-                    <i class="icon-large delete-icon" @click.prevent="send"></i>
-                    <i class="icon-large send-icon" @click.prevent="cancel"></i>
+                    <i class="icon-large send-icon" @click.prevent="send"></i>
+                    <i class="icon-large delete-icon" @click.prevent="cancel"></i>
                 </div>
             </div>
         </form>

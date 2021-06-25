@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    max-width: 980px;
+    width: 80vw;
+    max-width: 1000px;
     font-family: lato-light;
     font-weight: 100;
     border-bottom: 1px solid lightgray;

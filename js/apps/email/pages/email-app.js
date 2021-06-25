@@ -91,11 +91,13 @@ export default {
         },
 
         onShowEmailDetails(ev) {
-            this.pageState = 'email-details';
-            this.currEmail = ev;
+            this.pageState = 'email-details'
+            this.currEmail = ev
+            this.currEmail.isRead = true
         },
 
         onEmailSent(newEmail) {
+            console.log('sent', newEmail);
             emailService.save(newEmail).then(() => {
                 this.loadEmails();
                 this.pageState = 'email-list';
@@ -119,7 +121,7 @@ export default {
             console.log(email);
             emailService.save(email).then(() => {
                 this.loadEmails();
-                this.pageState = 'email-list';
+                // this.pageState = 'email-list';
             });
         },
 
@@ -172,7 +174,7 @@ export default {
         },
 
         unReadCount() {
-            return this.emails.reduce((acc, email) => (acc += email.isRead ? 1 : 0), 0);
+            return this.emails.reduce((acc, email) => (acc += !email.isRead ? 1 : 0), 0);
         },
 
         isEmailList() {

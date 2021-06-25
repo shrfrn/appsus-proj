@@ -7,15 +7,17 @@ export default
     props: ['emails'],
     template: `
         <section class="email-list">
-            <article v-for="email in emails" :key="email.id" class="email-preview-container">
-                <email-preview 
-                    :email="email"
-                    @delete="emitDelete($event)"
-                    @toggle-read="emitToggleRead($event)"
-                    @reply="emitReply($event)"
-                    @email-details="emitEmailDetails($event)"
-                    class="email-preview" />
-            </article>
+            <transition-group name="email-preview-list" tag="section">
+                <article v-for="email in emails" :key="email.id" class="email-preview-container">
+                    <email-preview 
+                        :email="email"
+                        @delete="emitDelete($event)"
+                        @toggle-read="emitToggleRead($event)"
+                        @reply="emitReply($event)"
+                        @email-details="emitEmailDetails($event)"
+                        class="email-preview" />
+                </article>
+            </transition-group>
         </section>
     `,
     data() {
