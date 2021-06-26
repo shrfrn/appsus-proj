@@ -37,13 +37,13 @@ export default {
                     :repliedEmail="repliedEmail"
                     @email-sent="onEmailSent"
                     @email-canceled="onEmailCanceled"/>
-                <email-details
-                    v-if="isEmailDetails"
-                    :email="currEmail"
-                    @close-email-details="onCloseEmailDetails"
-                    @delete="onEmailDeleted"
-                    @toggle-read="onToggleRead"
-                    @reply="onReply"/>
+                        <email-details
+                            v-if="isEmailDetails"
+                            :email="currEmail"
+                            @close-email-details="onCloseEmailDetails"
+                            @delete="onEmailDeleted"
+                            @toggle-read="onToggleRead"
+                            @reply="onReply"/>
             </section>
         </section>
     `,

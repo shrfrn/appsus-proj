@@ -21,7 +21,12 @@ export default
                 <div v-if="isExpandedPreview" class="expanded-preview">
                     <h1 class="basic-preview-subject">{{email.subject}}</h1>
                     <p>{{getBody(180)}}</p>
-                    <i class="icon-large expand-icon" @click="showEmailDetails"></i>
+                    <div class="expanded-preview-actions">
+                        <i class="icon-large delete-icon" @click.stop="deleteEmail"></i>
+                        <i class="icon-large reply-icon" @click.stop="reply"></i>
+                        <i class="icon-large" :class="envelopeIcon" @click.stop="toggleRead"></i>
+                        <i class="icon-large expand-icon" @click="showEmailDetails"></i>
+                    </div>
                 </div>
             </transition>
         </div>

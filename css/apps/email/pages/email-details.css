@@ -20,10 +20,30 @@
 }
 .email-details .actions {
     display: flex;
+    justify-content: space-evenly;
     gap: 20px;
-    align-self: flex-end;
+    width: 100%;
 
 }
 .email-details p span {
     margin-left: 30px;
 }
+
+/* Vue transitions */
+
+/* .email-details-enter, .email-details-leave-to {
+    opacity: 0;
+}
+
+.email-details-enter-to, .email-details-leave {
+    opacity: 1;
+}
+
+.email-details-enter-active {
+    transition: all 3s ease;
+} */
+  
+/* .email-details-enter-active, .email-details-leave-active {
+    transition: all 3s ease;
+} */
+  

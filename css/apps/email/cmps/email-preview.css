@@ -16,6 +16,7 @@
     width: 90vw;
     display: grid;
     grid-template-columns: 1fr 1fr 4fr 1fr 1fr;
+    /* grid-template-areas: "from subject body actions sent-at";    */
     gap: 6px;
     padding: 10px;
     border-bottom: 1px solid lightgray;
@@ -43,6 +44,8 @@
     content: ' - ';
 }
 
+/* Vue transitions */
+
 .expanded-preview-enter-active {
     transition: all .8s ease;
 }
@@ -55,9 +58,10 @@
     transform: translateY(-100px);
     opacity: 0;
 }
+
 .expanded-preview {
     max-width: 1000px;
-    max-width: 80vw;
+    max-width: 90vw;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -72,7 +76,51 @@
     font-size: 2rem;
     font-weight: bold;
 }
-.expanded-preview .expand-icon {
-    align-self: flex-end;
-    margin-right: 50px;
+
+.expanded-preview-actions {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 2rem;
 }
+@media (max-width: 850px){
+
+    .basic-preview {
+        grid-template-columns: 1fr 1fr 4fr 1.5fr;
+        grid-template-areas: "from subject body sent-at";   
+}
+
+    .basic-preview-from {
+        grid-area: from;
+    }
+
+    .basic-preview-subject {
+        grid-area: subject;
+    }
+
+    .basic-preview-sent-at {
+        grid-area: sent-at;
+    }
+
+    .basic-preview-body {
+        grid-area: body;
+    }
+
+    .basic-preview .actions {
+        display: none;
+    }
+}
+
+@media (max-width: 600px){
+
+    .basic-preview {
+        grid-template-columns: 1fr 2fr 2fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+
+            "from subject sent-at"   
+            "body body body";
+    }
+
+}
+

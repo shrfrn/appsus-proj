@@ -19,29 +19,30 @@
     height: 100%;
 }
 
-.inbox-btn {
-    color: black;
-    font-size: 1rem;
-    padding-left: 6px;
-}
-
-
 .compose-icon::before {
-    color: black;
     content: '\f56b';
     font-family: fa-solid;
 }
 
 .inbox-icon::before {
-    color: black;
     content: '\f01c';
     font-family: fa-solid;
 }
-.compose-icon:hover .inbox-icon:hover {
-    box-shadow: none;
-    color: whitesmoke;
-}
+
 .inbox-btn span{
+    cursor: default;
+}
+
+.compose-icon, .inbox-icon {
+    color: black;
+    transition: .3s ease;
+}
+
+.compose-icon:hover, .inbox-icon:hover {
+    box-shadow: none;
+    color: rgb(133, 132, 132);
+    transform: scale(120%);
+    transition: .3s ease;
 }
 
 .main-email-app-container {
@@ -51,7 +52,7 @@
 }
 
 .email-tool-bar input, .email-tool-bar select {
-    width: 20%;
+    width: 30%;
     padding: 1px;
     font-family: lato;
     font-weight: 600;
@@ -60,10 +61,12 @@
     height: 30px;
     outline: none;
 }
+
 .email-tool-bar select {
-    width: 8%;
+    width: 20%;
     color:#757575;
 }
+
 .mail-navbar {
     display: flex;
     flex-direction: column;
@@ -91,4 +94,10 @@
     content: '\f067';
     padding-left: 20px;
     font-family: fa-solid;
+}
+
+@media (max-width: 600px) {
+    .email-tool-bar{
+        height: 50px;
+    }
 }

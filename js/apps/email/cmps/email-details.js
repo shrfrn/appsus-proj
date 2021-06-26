@@ -16,7 +16,6 @@ export default {
                 <i class="icon-large note-icon" @click="shareAsNote"></i>
                 <i class="icon-large star-outline-icon" @click="emitStar"></i>
             </div>
-
         </section>
     `,
     data() {

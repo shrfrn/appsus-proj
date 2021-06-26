@@ -7,12 +7,12 @@ export default
     props: ['emails'],
     template: `
         <section class="email-list">
-            <header class="basic-preview">
-                <p class="sort-btn" @click="sortList('from')" :class="sortField('from')">from</p>
-                <p class="sort-btn" @click="sortList('subject')" :class="sortField('subject')">subject</p>
-                <p class="sort-btn" @click="sortList('body')" :class="sortField('body')">message</p>
+            <header class="basic-preview sort-btns">
+                <p class="sort-btn sort-from" @click="sortList('from')" :class="sortField('from')">from</p>
+                <p class="sort-btn sort-subject" @click="sortList('subject')" :class="sortField('subject')">subject</p>
+                <p class="sort-btn sort-body" @click="sortList('body')" :class="sortField('body')">message</p>
                 <p></p>
-                <p class="sort-btn" @click="sortList('sentAt')" :class="sortField('sentAt')">sent</p>
+                <p class="sort-btn sort-sent-at" @click="sortList('sentAt')" :class="sortField('sentAt')">sent</p>
             </header>
             <transition-group name="email-preview-list" tag="section">
                 <article v-for="email in emails" :key="email.id" class="email-preview-container">
