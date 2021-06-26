@@ -178,6 +178,7 @@ body {
 }
 
 /* USER MSG */
+
 .user-msg {
     display: flex;
     justify-content: space-evenly;
@@ -187,18 +188,19 @@ body {
     width: 300px;
     top: 10px;
     right: 10px;
-    padding: 20px;
+    padding: 5px;
+    color: #34325e;
     border: 2px solid #34325e;
     border-radius: 10px;
     background-color: #fff;
 }
 
 .success {
-    color: #5db95d;
+    /* color: #5db95d; */
     border-color: #5db95d;
 }
 
 .error {
-    color: #f16e6e;
+    /* color: #f16e6e; */
     border-color: #f16e6e;
 }

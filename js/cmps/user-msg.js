@@ -2,10 +2,10 @@ import { eventBus } from '../services/event-bus-service.js';
 
 export default {
     template: `
-    <div v-if="msg" class="user-msg" :class="msg.type">
+    <div v-if="msg" @click="hideMsg" class="user-msg" :class="msg.type">
         <i class="fas fa-check"></i>
         <div class="texts">
-            <h2>{{msg.type}}</h2>
+            <h3>{{msg.type}}</h3>
             <p>{{msg.text}}</p>
         </div>
     </div>
@@ -14,6 +14,7 @@ export default {
     data() {
         return {
             msg: null,
+            timerHandle: null,
         };
     },
 
@@ -27,9 +28,13 @@ export default {
     methods: {
         showMsg(msg) {
             this.msg = msg;
-            setTimeout(() => {
+            this.timerHandle = setTimeout(() => {
                 this.msg = null;
-            }, 3000);
+            }, 1500);
+        },
+        hideMsg(){
+            clearTimeout(this.timerHandle)
+            this.msg = null
         },
     },
 };
