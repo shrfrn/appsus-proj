@@ -15,9 +15,9 @@ export default {
     <button @click="toggleMenu" class="burger-icon"><i class="fas fa-bars fa-2x"></i></button>
     <div class="burger-list" v-if="isMenuOpen" :class="{ open: isMenuOpen }">
       <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/email">Email</router-link></li>
-        <li><router-link to="/keep">Keep</router-link></li>
+        <li><router-link v-on:click.native="isMenuOpen=false" to="/">Home</router-link></li>
+        <li><router-link v-on:click.native="isMenuOpen=false" to="/email">Email</router-link></li>
+        <li><router-link v-on:click.native="isMenuOpen=false" to="/keep">Keep</router-link></li>
       </ul>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
 `,
     data() {
         return {
-            isMobile: false,
+            // isMobile: false,
             isMenuOpen: false,
             windowWidth: window.innerWidth,
             txt: '',
@@ -43,18 +43,29 @@ export default {
             this.windowWidth = window.innerWidth;
         },
     },
-    watch: {
-        windowWidth() {
-            if (this.windowWidth < 600) this.isMobile = !this.isMobile;
-            else this.isMobile = !this.isMobile;
+    computed: {
+        isMobile() {
+          return this.windowWidth < 600
         },
     },
+    // watch: {
+    //     windowWidth() {
+    //         if (this.windowWidth < 600) this.isMobile = true;
+    //         else this.isMobile = false;
+    //         // if (this.windowWidth < 600) this.isMobile = !this.isMobile;
+    //         // else this.isMobile = !this.isMobile;
+    //     },
+    // },
     mounted() {
-        this.$nextTick(() => {
-            window.addEventListener('resize', this.onResize);
-        });
+        // this.$nextTick(() => {
+        //     window.addEventListener('resize', this.onResize);
+        //   });
     },
     created() {
         this.onResize();
+        window.addEventListener('resize', this.onResize);
+    },
+    destroyed(){
+        window.removeEventListener('resize', this.onResize)
     },
 };
